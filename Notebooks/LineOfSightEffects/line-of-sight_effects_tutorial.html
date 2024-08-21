@@ -1,0 +1,1669 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Line-of-sight effects in lenstronomy &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/LineOfSightEffects/line-of-sight_effects_tutorial';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="lenstronomy lens equation solver and flux ratios computation example notebook" href="../Numerics/solving_lens_equation_and_computing_flux_ratios.html" />
+    <link rel="prev" title="Cosmic shear with Einstein ring simulations" href="../LensModeling/cosmic_shear_with_Einstein_ring_simulations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../starting_guide.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../starting_guide.html">
+                    lenstronomy starting guide
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/starting_guide.html"><em>lenstronomy</em> starting guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/units_coordinates_parameters_definitions.html">Units, coordiante system and parameter definitions in lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/fits_handling_and_extracting_needed_information_from_the_data.html">FITS handling and extracting needed information from the data prior to modeling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lens Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_simple_Einstein_ring.html">Simple ring parameter constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_doubly_imaged_quasar.html">Double modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_quadruply_imaged_quasar.html">Quad modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_multiple_bands_simultaneously.html">Multi-band fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/source_reconstruction_with_shapelets.html">Shapelet source reconstruction</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modelling_of_catalogue_data.html">Modelling of catalogue data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/cosmic_shear_with_Einstein_ring_simulations.html">Cosmic shear with Einstein ring simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Line-of-Sight Effects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code></a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/solving_lens_equation_and_computing_flux_ratios.html">lenstronomy lens equation solver and flux ratios computation example notebook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/lenstronomy_numerics.html">lenstronomy numerics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulation_api.html">SimulationAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/skypy_meets_lenstronomy.html">Skypy meets lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulating_different_telescopes.html">Simulating different telescopes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Galaxy Light Fitting</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/galfitting_with_lenstronomy.html">“Galfitting” with lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/quasar_host_galaxy_decomposition.html">Quasar-host galaxy decomposition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dark Matter Substructure</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_simple_example.html">Substructure challenge - a simple example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_mock_production.html">Substructure Challenge - Mock production notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-Delay Cosmography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_simulations.html">Time delay-cosmography simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_with_uncertain_psf.html">Time delay-cosmography with uncertain PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/sampling_of_catalogue_data_with_external_information.html">Sampling of catalogue data with external information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmology_sampling_of_cosmographic_posteriors.html">Cosmology sampling of cosmographic posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmographic_uncertainty_estimation_and_forecasting_with_kinematics.html">Cosmographic uncertainty estimation and forecasting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clusters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Clusters/clusters.html">Clusters</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FNotebooks/LineOfSightEffects/line-of-sight_effects_tutorial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Notebooks/LineOfSightEffects/line-of-sight_effects_tutorial.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Line-of-sight effects in lenstronomy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory">Theory</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#boldsymbol-gamma-ab">\boldsymbol{\Gamma}_{ab}</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents <a name="contents"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singleplanelos-class-and-the-los-model">The SinglePlaneLOS() class and the <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> model <a name="los"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-los-minimal-model">The <code class="docutils literal notranslate"><span class="pre">'LOS_MINIMAL'</span></code> model<a name="los_minimal"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-an-image">Generating an image <a name="image"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#including-point-sources-and-time-delays">Including point sources and time delays <a name="ps"> </a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-delays">Time delays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-inference">Parameter inference <a name="inf"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contour-plot">Contour plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-inference-with-time-delays">Parameter inference with time delays <a name="inf_td"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contour plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="line-of-sight-effects-in-lenstronomy">
+<h1>Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code><a class="headerlink" href="#line-of-sight-effects-in-lenstronomy" title="Link to this heading">#</a></h1>
+<p>This notebook presents the main features of the LineOfSight module in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code>. The purpose of these features is to add line-of-sight corrections in the form of tidal matrices to any single-plane lensing situation.</p>
+<section id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Link to this heading">#</a></h2>
+<p>Following <a class="reference external" href="https://arxiv.org/abs/2011.04440">Fleury et al. (2020)</a> and <a class="reference external" href="https://arxiv.org/abs/2104.08883">Fleury et al. (2021)</a>, line-of-sight corrections are encoded in three <span class="math notranslate nohighlight">\(2\times 2\)</span> matrices, <span class="math notranslate nohighlight">\(\boldsymbol{\Gamma}_{\rm od}, \boldsymbol{\Gamma}_{\rm os}, \boldsymbol{\Gamma}_{\rm ds}\)</span>, which enter in the lens equation
+<span class="math notranslate nohighlight">\(\boldsymbol{\beta} = \boldsymbol{\theta} - \boldsymbol{\alpha}(\boldsymbol{\theta})\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\boldsymbol{\alpha}(\boldsymbol{\theta})
+=
+\boldsymbol{\Gamma}_{\rm os}\boldsymbol{\theta}
++ (1-\boldsymbol{\Gamma}_{\rm ds})
+    \boldsymbol{\alpha}_0[(1-\boldsymbol{\Gamma}_{\rm od})\boldsymbol{\theta}],$$ where $\boldsymbol{\alpha}_0(\boldsymbol{\theta})$ is the displacement angle of the main lens. \\The three line-of-sight matrices $\boldsymbol{\Gamma}_{ab}$ are parameterised by the convergence $\kappa_{ab}$, complex shear $\gamma_{ab}=\gamma^{ab}_1+\mathrm{i}\gamma^{ab}_2$ and rotation $\omega_{ab}$ as\end{aligned}\end{align} \]</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="boldsymbol-gamma-ab">
+<h1>\boldsymbol{\Gamma}_{ab}<a class="headerlink" href="#boldsymbol-gamma-ab" title="Link to this heading">#</a></h1>
+<p>\begin{bmatrix}
+\kappa_{ab} + \gamma_1^{ab} &amp; \gamma_2^{ab} - \omega_{ab} \
+\gamma^2_{ab} + \omega_{ab} &amp; \kappa_{ab} - \gamma_1^{ab}
+\end{bmatrix}.
+$$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import standard libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">corner</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="kn">import</span> <span class="n">default_cosmology</span>
+<span class="n">cosmo</span> <span class="o">=</span> <span class="n">default_cosmology</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="c1"># make sure lenstronomy is installed, otherwise install the latest pip version</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">lenstronomy</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>lenstronomy
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="contents">
+<h2>Contents <a name="contents"></a><a class="headerlink" href="#contents" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#los"><span class="xref myst">The SinglePlaneLOS() class and the <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> model</span></a></p></li>
+<li><p><a class="reference internal" href="#los_minimal"><span class="xref myst">The <code class="docutils literal notranslate"><span class="pre">'LOS_MINIMAL'</span></code> model</span></a></p></li>
+<li><p><a class="reference internal" href="#image"><span class="xref myst">Generating an image</span></a></p></li>
+<li><p><a class="reference internal" href="#ps"><span class="xref myst">Including point sources and time delays</span></a></p></li>
+<li><p><a class="reference internal" href="#inf"><span class="xref myst">Parameter inference</span></a></p></li>
+<li><p><a class="reference internal" href="#inf_td"><span class="xref myst">Parameter inference with time delays</span></a></p></li>
+</ol>
+</section>
+<section id="the-singleplanelos-class-and-the-los-model">
+<h2>The SinglePlaneLOS() class and the <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> model <a name="los"></a><a class="headerlink" href="#the-singleplanelos-class-and-the-los-model" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#contents"><span class="xref myst">Back to contents</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lenstronomy.LensModel.lens_model</span> <span class="kn">import</span> <span class="n">LensModel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The SinglePlaneLOS module creates a lens model equipped with line-of-sight effects. This is done by proceeding as in any single-plane lensing case, but adding, in the list of profiles, the “profile” <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code>. This is automatically recognised by the LensModel module which then triggers the use of SinglePlaneLOS instead of SinglePlane. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lens_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SIS&#39;</span><span class="p">,</span> <span class="s1">&#39;LOS&#39;</span><span class="p">]</span>
+
+<span class="n">lens_model</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">lens_model_list</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lens_model</span><span class="o">.</span><span class="n">lens_model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;lenstronomy.LensModel.LineOfSight.single_plane_los.SinglePlaneLOS&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The position of <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> in the list does not matter, but you can’t add two occurrences of <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code>; this triggers an error.</p>
+<p>You also cannot use LOS effects with multi-plane lensing. This is because line-of-sight corrections are an effective way to deal with multiple deflections that are occurring besides a main (dominant) lens. If you add the <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> profile with the multi-plane option of <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code>, you will get an error.</p>
+<p>The usual functions of single-plane lensing are then used similarly to the SinglePlane() class. The key-word arguments of <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> are treated as if <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> were an additional lens profile. The SinglePlaneLOS() class takes care of interpreting them to modify displacement angles etc. The key-word arguments consist of the three convergences, complex shears and rotations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify parameters for the SIS profile and the LOS effects</span>
+<span class="c1"># numbers chosen at random for this example</span>
+
+<span class="n">los_lens_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SIS&#39;</span><span class="p">,</span> <span class="s1">&#39;LOS&#39;</span><span class="p">]</span>
+
+<span class="n">lens_model</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">los_lens_model_list</span><span class="p">)</span>
+
+<span class="n">kwargs_SIS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="n">kwargs_LOS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kappa_od&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;kappa_os&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;kappa_ds&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+              <span class="s1">&#39;omega_od&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;omega_os&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;omega_ds&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+              <span class="s1">&#39;gamma1_od&#39;</span><span class="p">:</span>  <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;gamma2_od&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
+              <span class="s1">&#39;gamma1_os&#39;</span><span class="p">:</span>  <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;gamma2_os&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+              <span class="s1">&#39;gamma1_ds&#39;</span><span class="p">:</span>  <span class="mf">0.04</span><span class="p">,</span> <span class="s1">&#39;gamma2_ds&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">}</span>
+
+<span class="n">kwargs_lens</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_SIS</span><span class="p">,</span> <span class="n">kwargs_LOS</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># displacement angle alpha</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span> <span class="c1"># image coordinates</span>
+
+<span class="n">lens_model</span><span class="o">.</span><span class="n">alpha</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs_lens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.6840036220759766, 0.7548549191622171)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># source associated with the image</span>
+
+<span class="n">lens_model</span><span class="o">.</span><span class="n">ray_shooting</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs_lens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.18400362207597665, -0.25485491916221714)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hessian matrix at the image point</span>
+
+<span class="n">lens_model</span><span class="o">.</span><span class="n">hessian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs_lens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7062734665036974,
+ -0.6962734665036974,
+ -0.739969773243907,
+ 0.7499697732439072)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Fermat potential used to calculate time delays in the presence of tidal line-of-sight effects is given by
+$<span class="math notranslate nohighlight">\(
+T(\boldsymbol{\theta},\boldsymbol{\beta}) = \left[\frac{1}{2}(\boldsymbol{\theta}-\boldsymbol{\beta}')\cdot\boldsymbol{\mathcal{A}}_{{\rm LOS}}(\boldsymbol{\theta}-\boldsymbol{\beta}')-\psi_{{\rm eff}}(\boldsymbol{\theta}) \right],
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span> \boldsymbol{\mathcal{A}}<em> \equiv \boldsymbol{\mathcal{A}}</em>{\rm od}^T\boldsymbol{\mathcal{A}}<em>{\rm ds}^{-1}\boldsymbol{\mathcal{A}}</em>{\rm os} <span class="math notranslate nohighlight">\( is the &quot;line-of-sight&quot; amplification matrix, \)</span>\boldsymbol{\beta}’ = \boldsymbol{\mathcal{A}}<em>{\rm os}^{-1}\boldsymbol{\beta} <span class="math notranslate nohighlight">\( is the modified source position, and  \)</span>\psi</em>(\boldsymbol{\theta}) = \psi_0(\boldsymbol{\mathcal{A}}<em>{\rm od}\boldsymbol{\theta})<span class="math notranslate nohighlight">\(    
+is the potential of the main lens, evaluated at a position modified by the foreground amplification matrix. The amplification matrices are related to their shear matrix counterparts as, for example, \)</span>\boldsymbol{\mathcal{A}}</em>{\rm od} = \boldsymbol{1}-\boldsymbol{\Gamma}_{\rm od}$.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> is included in the list of lens profiles, the Fermat potential and arrival times will also be calculated with line-of-sight modifications. The latter requires the redshifts of the lens and source to be included when initialising the LensModel class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fermat potential at the image point</span>
+
+<span class="n">lens_model</span><span class="o">.</span><span class="n">fermat_potential</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kwargs_lens</span><span class="o">=</span><span class="n">kwargs_lens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.19239358061967793
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_lens</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="n">z_source</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="n">lens_model</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">lens_model_list</span><span class="o">=</span><span class="n">los_lens_model_list</span><span class="p">,</span> <span class="n">z_lens</span><span class="o">=</span><span class="n">z_lens</span><span class="p">,</span> <span class="n">z_source</span><span class="o">=</span><span class="n">z_source</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrival time of the image position in units of days</span>
+
+<span class="n">lens_model</span><span class="o">.</span><span class="n">arrival_time</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kwargs_lens</span><span class="o">=</span><span class="n">kwargs_lens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-24.5685474859259
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-los-minimal-model">
+<h2>The <code class="docutils literal notranslate"><span class="pre">'LOS_MINIMAL'</span></code> model<a name="los_minimal"></a><a class="headerlink" href="#the-los-minimal-model" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#contents"><span class="xref myst">Back to contents</span></a></p>
+<p>When attempting to reconstruct an image, we can use our ignorance of the underlying source to reduce the number of line-of-sight parameters. Multiplying the lens equation with <span class="math notranslate nohighlight">\((1 - \boldsymbol{\Gamma}_{\rm od})(1 - \boldsymbol{\Gamma}_{\rm ds})^{-1}\)</span> yields</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\boldsymbol{\beta}}
+= (1 - \boldsymbol{\Gamma}_{\rm LOS}) \boldsymbol{\theta}
+    - (1 - \boldsymbol{\Gamma}_{\rm od})
+        \boldsymbol{\alpha}_0[(1-\boldsymbol{\Gamma}_{\rm od})\boldsymbol{\theta}],
+\]</div>
+<p>with
+$<span class="math notranslate nohighlight">\(
+\tilde{\boldsymbol{\beta}}
+\equiv (1 - \boldsymbol{\Gamma}_{\rm od})
+        (1 - \boldsymbol{\Gamma}_{\rm ds})^{-1}
+        \boldsymbol{\beta}
+\approx (1 - \boldsymbol{\Gamma}_{\rm od} + \boldsymbol{\Gamma}_{\rm })
+        \boldsymbol{\beta},
+\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\Gamma}_{\rm LOS}
+\equiv 1-
+        (1 - \boldsymbol{\Gamma}_{\rm od})
+        (1 - \boldsymbol{\Gamma}_{\rm ds})^{-1}
+        (1 - \boldsymbol{\Gamma}_{\rm os})
+\approx \boldsymbol{\Gamma}_{\rm os} + \boldsymbol{\Gamma}_{\rm od} - \boldsymbol{\Gamma}_{\rm ds}.
+\]</div>
+<p>Therefore, any image can actually be analysed with the above model that only has two correction matrices, <span class="math notranslate nohighlight">\(\boldsymbol{\Gamma}_{\rm od}, \boldsymbol{\Gamma}_{\rm LOS}\)</span> instead of three.</p>
+<p>The above is equivalent to having <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> but with <span class="math notranslate nohighlight">\(\boldsymbol{\Gamma}_{ds}=\boldsymbol{\Gamma}_{od}\)</span>. This constraint is automatically implemented using the <code class="docutils literal notranslate"><span class="pre">'LOS_MINIMAL'</span></code> “profile” instead of <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code>. Its use is exactly the same as <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code>, though its key-word arguments are different, reflecting the reduction of the parameters in this minimal model.</p>
+<p>A detailed discussion of the minimal model can be found in <a class="reference external" href="https://arxiv.org/abs/2104.08883">Fleury et al. (2021)</a> (section 3.2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minimal_lens_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SIS&#39;</span><span class="p">,</span> <span class="s1">&#39;LOS_MINIMAL&#39;</span><span class="p">]</span>
+
+<span class="n">lens_model</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">minimal_lens_model_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs_SIS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+
+<span class="n">kwargs_minimal</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;kappa_od&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;kappa_los&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                  <span class="s1">&#39;omega_od&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;omega_los&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                  <span class="s1">&#39;gamma1_od&#39;</span><span class="p">:</span>  <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;gamma2_od&#39;</span><span class="p">:</span>  <span class="mf">0.0</span><span class="p">,</span>
+                  <span class="s1">&#39;gamma1_los&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="s1">&#39;gamma2_los&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
+
+<span class="n">minimal_kwargs_lens</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_SIS</span><span class="p">,</span> <span class="n">kwargs_minimal</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Displacement angles, ray shooting, Fermat potential etc. work in the same way as before, for instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span> <span class="c1"># image coordinates</span>
+
+<span class="n">lens_model</span><span class="o">.</span><span class="n">ray_shooting</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">minimal_kwargs_lens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.14236765777066995, -0.2836125680799597)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generating-an-image">
+<h2>Generating an image <a name="image"></a><a class="headerlink" href="#generating-an-image" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#contents"><span class="xref myst">Back to contents</span></a></p>
+<p>The production of an image is the same as for single-plane lensing. In this example we use the SimulationAPI module to generate the image, for which there is a <a class="reference external" href="https://github.com/lenstronomy/lenstronomy-tutorials/blob/main/Notebooks/Simulations/simulation_api.ipynb">separate tutorial notebook</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lenstronomy.SimulationAPI.sim_api</span> <span class="kn">import</span> <span class="n">SimAPI</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.SimulationAPI.ObservationConfig.HST</span> <span class="kn">import</span> <span class="n">HST</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a source</span>
+<span class="n">source_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SERSIC_ELLIPSE&#39;</span><span class="p">]</span>
+
+<span class="n">magnitude_source</span> <span class="o">=</span> <span class="mf">24.0</span>
+
+<span class="n">R_sersic_source</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">n_sersic_source</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">e1_source</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">e2_source</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">x_source</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">y_source</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">kwargs_sersic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;magnitude&#39;</span><span class="p">:</span> <span class="n">magnitude_source</span><span class="p">,</span>
+                 <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="n">R_sersic_source</span><span class="p">,</span> 
+                 <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="n">n_sersic_source</span><span class="p">,</span> 
+                 <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="n">e1_source</span><span class="p">,</span> 
+                 <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="n">e2_source</span><span class="p">,</span> 
+                 <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="n">x_source</span><span class="p">,</span> 
+                 <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="n">y_source</span><span class="p">}</span>
+
+<span class="n">kwargs_source_mag</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_sersic</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the simple SIS + LOS model defined above</span>
+<span class="n">image_lens_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SIS&#39;</span><span class="p">,</span> <span class="s1">&#39;LOS&#39;</span><span class="p">]</span>
+
+<span class="n">kwargs_lens</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_SIS</span><span class="p">,</span> <span class="n">kwargs_LOS</span><span class="p">]</span>
+
+<span class="c1"># gather the full model</span>
+<span class="n">kwargs_model</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model_list&#39;</span><span class="p">:</span> <span class="n">image_lens_model_list</span><span class="p">,</span>
+                <span class="s1">&#39;source_light_model_list&#39;</span><span class="p">:</span> <span class="n">source_model_list</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the telescope settings for HST</span>
+<span class="n">psf</span> <span class="o">=</span> <span class="s1">&#39;GAUSSIAN&#39;</span>
+<span class="n">band</span> <span class="o">=</span> <span class="n">HST</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="s1">&#39;WFC3_F160W&#39;</span><span class="p">,</span> <span class="n">psf_type</span><span class="o">=</span><span class="n">psf</span><span class="p">)</span> <span class="c1"># this chooses the specific camera and filter of HST</span>
+<span class="n">kwargs_band</span> <span class="o">=</span> <span class="n">band</span><span class="o">.</span><span class="n">kwargs_single_band</span><span class="p">()</span> <span class="c1"># we are only considering a single band (i.e. a single wavelength/filter)</span>
+<span class="n">pixel_size</span> <span class="o">=</span> <span class="n">band</span><span class="o">.</span><span class="n">camera</span><span class="p">[</span><span class="s1">&#39;pixel_scale&#39;</span><span class="p">]</span> <span class="c1"># in arcsec</span>
+
+<span class="n">kwargs_psf</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;psf_type&#39;</span><span class="p">:</span> <span class="n">psf</span><span class="p">,</span>
+              <span class="s1">&#39;fwhm&#39;</span><span class="p">:</span> <span class="n">kwargs_band</span><span class="p">[</span><span class="s1">&#39;seeing&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pixel_size&#39;</span><span class="p">:</span> <span class="n">pixel_size</span><span class="p">,</span>
+              <span class="s1">&#39;truncation&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="c1"># define the numerics</span>
+<span class="n">kwargs_numerics</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;supersampling_factor&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="s1">&#39;supersampling_convolution&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+
+<span class="c1"># call the simulation API class</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">SimAPI</span><span class="p">(</span><span class="n">numpix</span> <span class="o">=</span> <span class="mi">49</span><span class="p">,</span> <span class="c1"># number of pixels we want in our image</span>
+             <span class="n">kwargs_single_band</span> <span class="o">=</span> <span class="n">kwargs_band</span><span class="p">,</span> <span class="c1"># give the SimAPI class the keyword arguments for HST that we got above</span>
+             <span class="n">kwargs_model</span> <span class="o">=</span> <span class="n">kwargs_model</span><span class="p">)</span>
+
+<span class="n">kwargs_data</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">kwargs_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert magnitudes into amplitudes</span>
+<span class="c1"># we don&#39;t care about lens light or point source for the moment</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">kwargs_source</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">magnitude2amplitude</span><span class="p">(</span><span class="n">kwargs_source_mag</span><span class="o">=</span><span class="n">kwargs_source_mag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now use the SimAPI class to generate a noisy image in one step</span>
+<span class="n">imSim</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">image_model_class</span><span class="p">(</span><span class="n">kwargs_numerics</span><span class="p">)</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">imSim</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">kwargs_lens</span> <span class="o">=</span> <span class="n">kwargs_lens</span><span class="p">,</span>
+                    <span class="n">kwargs_source</span> <span class="o">=</span> <span class="n">kwargs_source</span><span class="p">)</span>
+
+<span class="n">image_noisy</span> <span class="o">=</span> <span class="n">image</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">noise_for_model</span><span class="p">(</span><span class="n">model</span> <span class="o">=</span> <span class="n">image</span><span class="p">)</span>
+
+<span class="n">kwargs_data</span><span class="p">[</span><span class="s1">&#39;image_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_noisy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the image</span>
+<span class="n">cmap_string</span> <span class="o">=</span> <span class="s1">&#39;bone&#39;</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_string</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_under</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">v_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">v_max</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">image_noisy</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">v_min</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">v_max</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-20-3b2a92e0f552&gt;:11: RuntimeWarning: invalid value encountered in log10
+  im = ax.matshow(np.log10(image_noisy), origin=&#39;lower&#39;, vmin=v_min, vmax=v_max, cmap=cmap, extent=[0, 1, 0, 1])
+</pre></div>
+</div>
+<img alt="../../_images/b198697fb1075d45b43215306a871ed4cb455885f003243f5a1185f214ebe813.png" src="../../_images/b198697fb1075d45b43215306a871ed4cb455885f003243f5a1185f214ebe813.png" />
+</div>
+</div>
+</section>
+<section id="including-point-sources-and-time-delays">
+<h2>Including point sources and time delays <a name="ps"> </a><a class="headerlink" href="#including-point-sources-and-time-delays" title="Link to this heading">#</a></h2>
+<p>We can add a point source to our set up and compute the time delays between the images.</p>
+<p><a class="reference internal" href="#contents"><span class="xref myst">Back to contents</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solve the lens equation</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.LensModel.Solver.lens_equation_solver</span> <span class="kn">import</span> <span class="n">LensEquationSolver</span>
+
+<span class="n">lens_model</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">image_lens_model_list</span><span class="p">)</span>
+
+<span class="n">ra_source</span><span class="p">,</span> <span class="n">dec_source</span> <span class="o">=</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mf">0.09</span> <span class="c1"># the centre of the AGN is slightly offset from that of the host galaxy</span>
+
+<span class="n">lensEquationSolver</span> <span class="o">=</span> <span class="n">LensEquationSolver</span><span class="p">(</span><span class="n">lens_model</span><span class="p">)</span>
+
+<span class="n">x_image</span><span class="p">,</span> <span class="n">y_image</span> <span class="o">=</span> <span class="n">lensEquationSolver</span><span class="o">.</span><span class="n">findBrightImage</span><span class="p">(</span><span class="n">ra_source</span><span class="p">,</span> <span class="n">dec_source</span><span class="p">,</span> <span class="n">kwargs_lens</span><span class="p">,</span> <span class="n">numImages</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># compute lensing magnification at image positions</span>
+<span class="n">mag</span> <span class="o">=</span> <span class="n">lens_model</span><span class="o">.</span><span class="n">magnification</span><span class="p">(</span><span class="n">x_image</span><span class="p">,</span> <span class="n">y_image</span><span class="p">,</span> <span class="n">kwargs_lens</span><span class="p">)</span>
+
+<span class="n">mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>  <span class="c1"># ignore the sign of the magnification</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set up the point source</span>
+<span class="n">point_amp</span> <span class="o">=</span> <span class="n">mag</span> <span class="o">*</span> <span class="mi">500</span>  <span class="c1"># multiply by intrinsic quasar brightness (in counts/s)</span>
+
+<span class="n">kwargs_ps</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;ra_image&#39;</span><span class="p">:</span> <span class="n">x_image</span><span class="p">,</span> 
+              <span class="s1">&#39;dec_image&#39;</span><span class="p">:</span> <span class="n">y_image</span><span class="p">,</span>
+              <span class="s1">&#39;point_amp&#39;</span><span class="p">:</span> <span class="n">point_amp</span><span class="p">}]</span>  <span class="c1"># quasar point source position in the lens plane and intrinsic brightness</span>
+
+<span class="n">point_source_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LENSED_POSITION&#39;</span><span class="p">]</span>
+
+<span class="n">kwargs_model_ps</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model_list&#39;</span><span class="p">:</span> <span class="n">image_lens_model_list</span><span class="p">,</span>
+                   <span class="s1">&#39;source_light_model_list&#39;</span><span class="p">:</span> <span class="n">source_model_list</span><span class="p">,</span>
+                   <span class="s1">&#39;point_source_model_list&#39;</span><span class="p">:</span> <span class="n">point_source_list</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call the simulation API class with the new model</span>
+<span class="n">sim_ps</span> <span class="o">=</span> <span class="n">SimAPI</span><span class="p">(</span><span class="n">numpix</span> <span class="o">=</span> <span class="mi">49</span><span class="p">,</span> 
+                <span class="n">kwargs_single_band</span> <span class="o">=</span> <span class="n">kwargs_band</span><span class="p">,</span> 
+                <span class="n">kwargs_model</span> <span class="o">=</span> <span class="n">kwargs_model_ps</span><span class="p">)</span>
+
+<span class="n">kwargs_data_ps</span> <span class="o">=</span> <span class="n">sim_ps</span><span class="o">.</span><span class="n">kwargs_data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add the noise</span>
+<span class="n">imSim_ps</span> <span class="o">=</span> <span class="n">sim_ps</span><span class="o">.</span><span class="n">image_model_class</span><span class="p">(</span><span class="n">kwargs_numerics</span><span class="p">)</span>
+
+<span class="n">image_ps</span> <span class="o">=</span> <span class="n">imSim_ps</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">kwargs_lens</span> <span class="o">=</span> <span class="n">kwargs_lens</span><span class="p">,</span>
+                          <span class="n">kwargs_source</span> <span class="o">=</span> <span class="n">kwargs_source</span><span class="p">,</span>
+                          <span class="n">kwargs_ps</span> <span class="o">=</span> <span class="n">kwargs_ps</span><span class="p">)</span>
+
+<span class="n">image_noisy_ps</span> <span class="o">=</span> <span class="n">image_ps</span> <span class="o">+</span> <span class="n">sim_ps</span><span class="o">.</span><span class="n">noise_for_model</span><span class="p">(</span><span class="n">model</span> <span class="o">=</span> <span class="n">image_ps</span><span class="p">)</span>
+
+<span class="n">kwargs_data_ps</span><span class="p">[</span><span class="s1">&#39;image_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_noisy_ps</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the image</span>
+<span class="n">cmap_string</span> <span class="o">=</span> <span class="s1">&#39;bone&#39;</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap_string</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_under</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># change the contrast of the image slightly</span>
+<span class="n">v_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">v_max</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">image_noisy_ps</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">v_min</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">v_max</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-25-15c64994886e&gt;:12: RuntimeWarning: invalid value encountered in log10
+  im = ax.matshow(np.log10(image_noisy_ps), origin=&#39;lower&#39;, vmin=v_min, vmax=v_max, cmap=cmap, extent=[0, 1, 0, 1])
+</pre></div>
+</div>
+<img alt="../../_images/384f4be4ce510843ef05b8222b81b13e644ef2981c13089378d3fad872ebd922.png" src="../../_images/384f4be4ce510843ef05b8222b81b13e644ef2981c13089378d3fad872ebd922.png" />
+</div>
+</div>
+<section id="time-delays">
+<h3>Time delays<a class="headerlink" href="#time-delays" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate time delays and the time delay distance</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Analysis.td_cosmography</span> <span class="kn">import</span> <span class="n">TDCosmography</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Cosmo.lens_cosmo</span> <span class="kn">import</span> <span class="n">LensCosmo</span>
+
+<span class="n">td_cosmo</span> <span class="o">=</span> <span class="n">TDCosmography</span><span class="p">(</span><span class="n">z_lens</span><span class="p">,</span> <span class="n">z_source</span><span class="p">,</span> <span class="n">kwargs_model_ps</span><span class="p">,</span> <span class="n">cosmo_fiducial</span><span class="o">=</span><span class="n">cosmo</span><span class="p">)</span>
+
+<span class="c1"># time delays, the unit [days] is matched when the lensing angles are in arcsec</span>
+<span class="n">t_days</span> <span class="o">=</span> <span class="n">td_cosmo</span><span class="o">.</span><span class="n">time_delays</span><span class="p">(</span><span class="n">kwargs_lens</span><span class="p">,</span> <span class="n">kwargs_ps</span><span class="p">,</span> <span class="n">kappa_ext</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># relative delays (observable); the convention is relative to the first image</span>
+<span class="n">dt_days</span> <span class="o">=</span>  <span class="n">t_days</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">t_days</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># errors can be assigned to the measured relative delays (full covariance matrix not yet implemented)</span>
+<span class="n">dt_sigma</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Gaussian errors</span>
+
+<span class="c1"># realisation of the measurement with the quoted error bars</span>
+<span class="n">dt_measured</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">dt_days</span><span class="p">,</span> <span class="n">dt_sigma</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The measured relative delays are </span><span class="si">{}</span><span class="s1"> days.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt_measured</span><span class="p">))</span>
+
+<span class="n">lensCosmo</span> <span class="o">=</span> <span class="n">LensCosmo</span><span class="p">(</span><span class="n">z_lens</span><span class="o">=</span><span class="n">z_lens</span><span class="p">,</span> <span class="n">z_source</span><span class="o">=</span><span class="n">z_source</span><span class="p">,</span> <span class="n">cosmo</span><span class="o">=</span><span class="n">cosmo</span><span class="p">)</span>
+
+<span class="n">ddt</span> <span class="o">=</span> <span class="n">lensCosmo</span><span class="o">.</span><span class="n">ddt</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The time delay distance is </span><span class="si">{}</span><span class="s1"> Mpc.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ddt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The measured relative delays are [28.38289265] days.
+The time delay distance is 4560.611423943215 Mpc.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="parameter-inference">
+<h2>Parameter inference <a name="inf"></a><a class="headerlink" href="#parameter-inference" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#contents"><span class="xref myst">Back to contents</span></a></p>
+<p>The implementation of the line-of-sight effects means that <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code> treats the <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> and <code class="docutils literal notranslate"><span class="pre">'LOS_MINIMAL'</span></code> options as lens profiles. This means that it deals with their parameters (convergences, shears, rotations) in the same way as it would do with the parameters of any other lens model, such as the Einstein radius or the ellipticity. This means that parameter inference with the LOS effects works exactly as it does with any other lens model in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code>.</p>
+<p>As an example, we can fit the first image produced above with a model consisting of an SIS lens plus the <code class="docutils literal notranslate"><span class="pre">'LOS_MINIMAL'</span></code> model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expected values of the LOS shear from the od, ds and os shears</span>
+<span class="c1"># note that this holds at linear level only!</span>
+<span class="n">gamma1_los</span> <span class="o">=</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma1_os&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma1_ds&#39;</span><span class="p">]</span>
+<span class="n">gamma2_los</span> <span class="o">=</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma2_od&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma2_os&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma2_ds&#39;</span><span class="p">]</span>
+<span class="n">omega_los</span> <span class="o">=</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitting_lens_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SIS&#39;</span><span class="p">,</span> <span class="s1">&#39;LOS_MINIMAL&#39;</span><span class="p">]</span>
+
+<span class="c1"># initialise the lists of parameters</span>
+<span class="n">fixed_lens</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lens_init</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lens_sigma</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lower_lens</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_upper_lens</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># parameters for the SIS (in this example we only sample the Einstein radius)</span>
+<span class="c1"># specify which parameters are fixed </span>
+<span class="c1"># and choose the initial value, step size, lower and higher limits for the sampled parameters</span>
+
+<span class="n">fixed_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">})</span>
+<span class="n">kwargs_lens_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
+<span class="n">kwargs_lens_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">})</span>
+<span class="n">kwargs_lower_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">})</span>
+<span class="n">kwargs_upper_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># line-of-sight parameters</span>
+<span class="c1"># we vary the shears and also allow for LOS rotation</span>
+<span class="n">fixed_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;kappa_od&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;omega_od&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;kappa_los&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">})</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma2_od&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma1_los&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma2_los&#39;</span><span class="p">,</span> <span class="s1">&#39;omega_los&#39;</span><span class="p">]</span>
+
+<span class="c1"># initialise the LOS kwargs close to their expected values</span>
+<span class="n">kwargs_lens_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">:</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;gamma2_od&#39;</span><span class="p">:</span> <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma2_od&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;gamma1_los&#39;</span><span class="p">:</span> <span class="n">gamma1_los</span><span class="p">,</span>
+                         <span class="s1">&#39;gamma2_los&#39;</span><span class="p">:</span> <span class="n">gamma2_los</span><span class="p">,</span>
+                         <span class="s1">&#39;omega_los&#39;</span><span class="p">:</span> <span class="n">omega_los</span><span class="p">})</span>
+
+<span class="n">kwargs_lens_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">param</span><span class="p">:</span> <span class="mf">0.01</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">})</span>
+<span class="n">kwargs_lower_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">param</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">})</span>
+<span class="n">kwargs_upper_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">param</span><span class="p">:</span> <span class="mf">0.5</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">})</span>
+
+<span class="n">lens_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_lens_init</span><span class="p">,</span>
+               <span class="n">kwargs_lens_sigma</span><span class="p">,</span>
+               <span class="n">fixed_lens</span><span class="p">,</span>
+               <span class="n">kwargs_lower_lens</span><span class="p">,</span>
+               <span class="n">kwargs_upper_lens</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-warning">
+<b>Note:</b> The line-of-sight rotation is sampled in order to account for non-linear effects coming from the inversion of matrices and matrix mutiplication. It is necessary to get a good fit, but can be thought of as a nuisance parameter.<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now for the source</span>
+<span class="n">source_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SERSIC_ELLIPSE&#39;</span><span class="p">]</span>
+
+<span class="n">fixed_source</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_source_init</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_source_sigma</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lower_source</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_upper_source</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">fixed_source</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+<span class="n">kwargs_source_init</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kwargs_sersic</span><span class="p">)</span>
+<span class="n">kwargs_source_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+                            <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+                            <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">})</span>
+<span class="n">kwargs_lower_source</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+                            <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>
+                            <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">})</span>
+<span class="n">kwargs_upper_source</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                            <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+                            <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">})</span>
+
+<span class="n">source_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_source_init</span><span class="p">,</span> <span class="n">kwargs_source_sigma</span><span class="p">,</span>
+                 <span class="n">fixed_source</span><span class="p">,</span> <span class="n">kwargs_lower_source</span><span class="p">,</span> <span class="n">kwargs_upper_source</span><span class="p">]</span>
+
+<span class="n">kwargs_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model&#39;</span><span class="p">:</span> <span class="n">lens_params</span><span class="p">,</span>
+                <span class="s1">&#39;source_model&#39;</span><span class="p">:</span> <span class="n">source_params</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the MCMC</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Workflow.fitting_sequence</span> <span class="kn">import</span> <span class="n">FittingSequence</span>
+
+<span class="n">kwargs_likelihood</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;source_marg&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+<span class="n">kwargs_model</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model_list&#39;</span><span class="p">:</span> <span class="n">fitting_lens_model_list</span><span class="p">,</span>
+                <span class="s1">&#39;source_light_model_list&#39;</span><span class="p">:</span> <span class="n">source_model_list</span><span class="p">}</span>
+
+<span class="n">multi_band_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">kwargs_data</span><span class="p">,</span> <span class="n">kwargs_psf</span><span class="p">,</span> <span class="n">kwargs_numerics</span><span class="p">]]</span>
+
+<span class="n">kwargs_data_joint</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;multi_band_list&#39;</span><span class="p">:</span> <span class="n">multi_band_list</span><span class="p">,</span>
+                     <span class="s1">&#39;multi_band_type&#39;</span><span class="p">:</span> <span class="s1">&#39;multi-linear&#39;</span><span class="p">}</span>
+
+<span class="n">kwargs_constraints</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">fitting_seq</span> <span class="o">=</span> <span class="n">FittingSequence</span><span class="p">(</span><span class="n">kwargs_data_joint</span><span class="p">,</span> <span class="n">kwargs_model</span><span class="p">,</span> <span class="n">kwargs_constraints</span><span class="p">,</span> 
+                              <span class="n">kwargs_likelihood</span><span class="p">,</span> <span class="n">kwargs_params</span><span class="p">)</span>
+
+<span class="n">fitting_kwargs_list</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;MCMC&#39;</span><span class="p">,</span>
+                        <span class="p">{</span><span class="s1">&#39;n_burn&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;n_run&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+                         <span class="s1">&#39;walkerRatio&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;sigma_scale&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}]]</span>
+
+<span class="n">chain_list</span> <span class="o">=</span> <span class="n">fitting_seq</span><span class="o">.</span><span class="n">fit_sequence</span><span class="p">(</span><span class="n">fitting_kwargs_list</span><span class="p">)</span>
+<span class="n">kwargs_result</span> <span class="o">=</span> <span class="n">fitting_seq</span><span class="o">.</span><span class="n">best_fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Best-fit parameters:</span>
+<span class="si">{}</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kwargs_result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 2000/2000 [05:44&lt;00:00,  5.80it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing the MCMC...
+Number of walkers =  120
+Burn-in iterations:  1000
+Sampling iterations (in current run): 2000
+345.04363918304443 time taken for MCMC sampling
+Best-fit parameters:
+{&#39;kwargs_lens&#39;: [{&#39;theta_E&#39;: 0.9982639330413806, &#39;center_x&#39;: 0.0, &#39;center_y&#39;: 0.0}, {&#39;kappa_od&#39;: 0.0, &#39;gamma1_od&#39;: 0.010308340480343415, &#39;gamma2_od&#39;: 0.020045545567951538, &#39;omega_od&#39;: 0.0, &#39;kappa_los&#39;: 0.0, &#39;gamma1_los&#39;: -0.029341599773404906, &#39;gamma2_los&#39;: 0.040063006295474754, &#39;omega_los&#39;: 0.0006514925729264845}], &#39;kwargs_source&#39;: [{&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.030044717269047432, &#39;n_sersic&#39;: 1.006455449380885, &#39;e1&#39;: 0.3263841088028316, &#39;e2&#39;: -0.03441791197800702, &#39;center_x&#39;: 0.10013762023017275, &#39;center_y&#39;: 0.09398980690426818}], &#39;kwargs_lens_light&#39;: [], &#39;kwargs_ps&#39;: [], &#39;kwargs_special&#39;: {}, &#39;kwargs_extinction&#39;: []}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analyse the MCMC and display best-fit image</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Plots</span> <span class="kn">import</span> <span class="n">chain_plot</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Plots.model_plot</span> <span class="kn">import</span> <span class="n">ModelPlot</span>
+
+<span class="n">modelPlot</span> <span class="o">=</span> <span class="n">ModelPlot</span><span class="p">(</span><span class="n">multi_band_list</span><span class="p">,</span> <span class="n">kwargs_model</span><span class="p">,</span> <span class="n">kwargs_result</span><span class="p">,</span>
+                      <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">cmap_string</span><span class="o">=</span><span class="s1">&#39;gist_heat&#39;</span><span class="p">)</span>
+    
+<span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">data_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">model_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">normalized_residual_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">v_min</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="n">v_max</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">source_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">deltaPix_source</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">numPix</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">convergence_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">v_max</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">magnification_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.0166092554292705 reduced X^2 of all evaluated imaging data combined (without degrees of freedom subtracted).
+reduced chi^2 of data  0 =  1.0166092554292705
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/natalie/.local/lib/python3.8/site-packages/lenstronomy-1.10.4-py3.8.egg/lenstronomy/Plots/model_band_plot.py:101: RuntimeWarning: invalid value encountered in log10
+  im = ax.matshow(np.log10(self._data), origin=&#39;lower&#39;,
+/home/natalie/.local/lib/python3.8/site-packages/lenstronomy-1.10.4-py3.8.egg/lenstronomy/Plots/model_band_plot.py:175: RuntimeWarning: divide by zero encountered in log10
+  im = ax.matshow(np.log10(kappa_result), origin=&#39;lower&#39;,
+</pre></div>
+</div>
+<img alt="../../_images/bdbd9af666a474c6aec28f03a23039094966f1e9ad4c740b1347f8b45ae7f96e.png" src="../../_images/bdbd9af666a474c6aec28f03a23039094966f1e9ad4c740b1347f8b45ae7f96e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convergence of the MCMC</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chain_list</span><span class="p">)):</span>
+    <span class="n">chain_plot</span><span class="o">.</span><span class="n">plot_chain_list</span><span class="p">(</span><span class="n">chain_list</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    
+<span class="n">sampler_type</span><span class="p">,</span> <span class="n">samples_mcmc</span><span class="p">,</span> <span class="n">param_mcmc</span><span class="p">,</span> <span class="n">dist_mcmc</span>  <span class="o">=</span> <span class="n">chain_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of non-linear parameters in the MCMC process: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_mcmc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters in order: &quot;</span><span class="p">,</span> <span class="n">param_mcmc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of evaluations in the MCMC process: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">samples_mcmc</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of non-linear parameters in the MCMC process:  12
+parameters in order:  [&#39;theta_E_lens0&#39;, &#39;gamma1_od_lens1&#39;, &#39;gamma2_od_lens1&#39;, &#39;gamma1_los_lens1&#39;, &#39;gamma2_los_lens1&#39;, &#39;omega_los_lens1&#39;, &#39;R_sersic_source_light0&#39;, &#39;n_sersic_source_light0&#39;, &#39;e1_source_light0&#39;, &#39;e2_source_light0&#39;, &#39;center_x_source_light0&#39;, &#39;center_y_source_light0&#39;]
+number of evaluations in the MCMC process:  120000
+</pre></div>
+</div>
+<img alt="../../_images/03b10c95a0f79615a88cf6647289e39907a4d9b62e906ce190202fb78b88328d.png" src="../../_images/03b10c95a0f79615a88cf6647289e39907a4d9b62e906ce190202fb78b88328d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraints on the parameters: define the labels and expected values</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$\theta_{\rm E}$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$\gamma^</span><span class="si">{od}</span><span class="s1">_1$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$\gamma^</span><span class="si">{od}</span><span class="s1">_2$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$\gamma^{\rm LOS}_1$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$\gamma^{\rm LOS}_2$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$\omega_{\rm LOS}$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$R_{\rm Sérsic}$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$n_{\rm Sérsic}$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$e_1^{\rm source}$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$e_2^{\rm source}$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$x_s$&#39;</span><span class="p">,</span>
+          <span class="sa">r</span><span class="s1">&#39;$y_s$&#39;</span><span class="p">]</span>
+
+<span class="n">expected_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_SIS</span><span class="p">[</span><span class="s1">&#39;theta_E&#39;</span><span class="p">],</span>
+                   <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">],</span>
+                   <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma2_od&#39;</span><span class="p">],</span>
+                   <span class="n">gamma1_los</span><span class="p">,</span>
+                   <span class="n">gamma2_los</span><span class="p">,</span>
+                   <span class="n">omega_los</span><span class="p">,</span> 
+                   <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">],</span>
+                   <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;n_sersic&#39;</span><span class="p">],</span>
+                   <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;e1&#39;</span><span class="p">],</span>
+                   <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;e2&#39;</span><span class="p">],</span>
+                   <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;center_x&#39;</span><span class="p">],</span>
+                   <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;center_y&#39;</span><span class="p">]]</span>
+
+<span class="n">n</span><span class="p">,</span> <span class="n">num_param</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">samples_mcmc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="contour-plot">
+<h3>Contour plot<a class="headerlink" href="#contour-plot" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># have a look at the constraints on the line-of-sight parameters</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">corner</span><span class="o">.</span><span class="n">corner</span><span class="p">(</span><span class="n">samples_mcmc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">truths</span><span class="o">=</span><span class="n">expected_values</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span>
+                     <span class="n">truth_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+                     <span class="n">show_titles</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">title_fmt</span> <span class="o">=</span> <span class="s1">&#39;.4f&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2dd8a4c87715ae66b7269ce20fcad62b01dc69cf2a6e9c00974b075479d34ff7.png" src="../../_images/2dd8a4c87715ae66b7269ce20fcad62b01dc69cf2a6e9c00974b075479d34ff7.png" />
+</div>
+</div>
+<p>We see that we can recover the expected line-of-sight shear with an excellent precision and accuracy.</p>
+</section>
+</section>
+<section id="parameter-inference-with-time-delays">
+<h2>Parameter inference with time delays <a name="inf_td"></a><a class="headerlink" href="#parameter-inference-with-time-delays" title="Link to this heading">#</a></h2>
+<p>Point sources and time delay information can also be included in the parameter inference, and the time delay distance measured.</p>
+<p><a class="reference internal" href="#contents"><span class="xref myst">Back to contents</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fixed_ps</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_ps_init</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_ps_sigma</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lower_ps</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_upper_ps</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Define parameters</span>
+<span class="n">fixed_ps</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+<span class="n">kwargs_ps_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;ra_image&#39;</span><span class="p">:</span> <span class="n">x_image</span><span class="p">,</span> <span class="s1">&#39;dec_image&#39;</span><span class="p">:</span> <span class="n">y_image</span><span class="p">})</span>
+<span class="n">kwargs_ps_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;ra_image&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_image</span><span class="p">),</span>  <span class="s1">&#39;dec_image&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_image</span><span class="p">)})</span>
+<span class="n">kwargs_lower_ps</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;ra_image&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_image</span><span class="p">),</span> <span class="s1">&#39;dec_image&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">10.0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_image</span><span class="p">)})</span>
+<span class="n">kwargs_upper_ps</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;ra_image&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_image</span><span class="p">),</span>  <span class="s1">&#39;dec_image&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_image</span><span class="p">)})</span>
+
+<span class="n">ps_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_ps_init</span><span class="p">,</span> 
+             <span class="n">kwargs_ps_sigma</span><span class="p">,</span>
+             <span class="n">fixed_ps</span><span class="p">,</span> 
+             <span class="n">kwargs_lower_ps</span><span class="p">,</span> 
+             <span class="n">kwargs_upper_ps</span><span class="p">]</span>
+
+<span class="n">fixed_cosmo</span> <span class="o">=</span> <span class="p">[{}]</span>
+<span class="n">kwargs_cosmo_init</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;D_dt&#39;</span><span class="p">:</span> <span class="n">ddt</span><span class="p">}</span>
+<span class="n">kwargs_cosmo_sigma</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;D_dt&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">}</span>
+<span class="n">kwargs_lower_cosmo</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;D_dt&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">kwargs_upper_cosmo</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;D_dt&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">}</span>
+
+<span class="n">cosmo_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_cosmo_init</span><span class="p">,</span> 
+                <span class="n">kwargs_cosmo_sigma</span><span class="p">,</span> 
+                <span class="n">fixed_cosmo</span><span class="p">,</span> 
+                <span class="n">kwargs_lower_cosmo</span><span class="p">,</span> 
+                <span class="n">kwargs_upper_cosmo</span><span class="p">]</span>
+
+<span class="n">kwargs_params_ps</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model&#39;</span><span class="p">:</span> <span class="n">lens_params</span><span class="p">,</span>
+                   <span class="s1">&#39;source_model&#39;</span><span class="p">:</span> <span class="n">source_params</span><span class="p">,</span>
+                   <span class="s1">&#39;point_source_model&#39;</span><span class="p">:</span> <span class="n">ps_params</span><span class="p">,</span>
+                   <span class="s1">&#39;special&#39;</span><span class="p">:</span> <span class="n">cosmo_params</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the MCMC</span>
+
+<span class="n">kwargs_likelihood_ps</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;source_marg&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                       <span class="s1">&#39;time_delay_likelihood&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span>
+
+<span class="n">multi_band_list_ps</span> <span class="o">=</span> <span class="p">[[</span><span class="n">kwargs_data_ps</span><span class="p">,</span> <span class="n">kwargs_psf</span><span class="p">,</span> <span class="n">kwargs_numerics</span><span class="p">]]</span>
+
+<span class="n">kwargs_data_joint_ps</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;multi_band_list&#39;</span><span class="p">:</span> <span class="n">multi_band_list_ps</span><span class="p">,</span>
+                       <span class="s1">&#39;multi_band_type&#39;</span><span class="p">:</span> <span class="s1">&#39;multi-linear&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;time_delays_measured&#39;</span><span class="p">:</span> <span class="n">dt_measured</span><span class="p">,</span>
+                       <span class="s1">&#39;time_delays_uncertainties&#39;</span><span class="p">:</span> <span class="n">dt_sigma</span><span class="p">}</span>
+
+<span class="n">kwargs_constraints_ps</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;num_point_source_list&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x_image</span><span class="p">)],</span> <span class="s1">&#39;Ddt_sampling&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+<span class="n">kwargs_model_ps</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model_list&#39;</span><span class="p">:</span> <span class="n">fitting_lens_model_list</span><span class="p">,</span>
+                  <span class="s1">&#39;source_light_model_list&#39;</span><span class="p">:</span> <span class="n">source_model_list</span><span class="p">,</span>
+                  <span class="s1">&#39;point_source_model_list&#39;</span><span class="p">:</span> <span class="n">point_source_list</span><span class="p">}</span>
+
+<span class="n">fitting_seq_ps</span> <span class="o">=</span> <span class="n">FittingSequence</span><span class="p">(</span><span class="n">kwargs_data_joint_ps</span><span class="p">,</span> <span class="n">kwargs_model_ps</span><span class="p">,</span> 
+                                 <span class="n">kwargs_constraints_ps</span><span class="p">,</span> <span class="n">kwargs_likelihood_ps</span><span class="p">,</span> 
+                                 <span class="n">kwargs_params_ps</span><span class="p">)</span>
+
+<span class="n">chain_list_ps</span> <span class="o">=</span> <span class="n">fitting_seq_ps</span><span class="o">.</span><span class="n">fit_sequence</span><span class="p">(</span><span class="n">fitting_kwargs_list</span><span class="p">)</span>
+
+<span class="n">kwargs_result_ps</span> <span class="o">=</span> <span class="n">fitting_seq_ps</span><span class="o">.</span><span class="n">best_fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Best-fit parameters:</span>
+<span class="si">{}</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kwargs_result_ps</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 2000/2000 [36:36&lt;00:00,  1.10s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing the MCMC...
+Number of walkers =  170
+Burn-in iterations:  1000
+Sampling iterations (in current run): 2000
+2197.338767051697 time taken for MCMC sampling
+Best-fit parameters:
+{&#39;kwargs_lens&#39;: [{&#39;theta_E&#39;: 0.9980655381458965, &#39;center_x&#39;: 0.0, &#39;center_y&#39;: 0.0}, {&#39;kappa_od&#39;: 0.0, &#39;gamma1_od&#39;: 0.009932425824759134, &#39;gamma2_od&#39;: 0.019931531509640388, &#39;omega_od&#39;: 0.0, &#39;kappa_los&#39;: 0.0, &#39;gamma1_los&#39;: -0.030348437672575487, &#39;gamma2_los&#39;: 0.039535728336128194, &#39;omega_los&#39;: 0.000398608832894087}], &#39;kwargs_source&#39;: [{&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.030296546928350095, &#39;n_sersic&#39;: 0.9848957411321155, &#39;e1&#39;: 0.32888386093945904, &#39;e2&#39;: -0.030541469147902275, &#39;center_x&#39;: 0.10024003028582852, &#39;center_y&#39;: 0.09403476804339847}], &#39;kwargs_lens_light&#39;: [], &#39;kwargs_ps&#39;: [{&#39;ra_image&#39;: array([ 0.62999193, -0.77389731]), &#39;dec_image&#39;: array([ 0.98830247, -0.35157728]), &#39;point_amp&#39;: array([1., 1.])}], &#39;kwargs_special&#39;: {&#39;D_dt&#39;: 3367.047021759739}, &#39;kwargs_extinction&#39;: []}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyse the MCMC and display best-fit image</span>
+
+<span class="n">modelPlot_ps</span> <span class="o">=</span> <span class="n">ModelPlot</span><span class="p">(</span><span class="n">multi_band_list_ps</span><span class="p">,</span> <span class="n">kwargs_model_ps</span><span class="p">,</span> 
+                         <span class="n">kwargs_result_ps</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> 
+                         <span class="n">cmap_string</span><span class="o">=</span><span class="s1">&#39;gist_heat&#39;</span><span class="p">)</span>
+    
+<span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">modelPlot_ps</span><span class="o">.</span><span class="n">data_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">modelPlot_ps</span><span class="o">.</span><span class="n">model_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">modelPlot_ps</span><span class="o">.</span><span class="n">normalized_residual_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">v_min</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="n">v_max</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">modelPlot_ps</span><span class="o">.</span><span class="n">source_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">deltaPix_source</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">numPix</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">modelPlot_ps</span><span class="o">.</span><span class="n">convergence_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">v_max</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">modelPlot_ps</span><span class="o">.</span><span class="n">magnification_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.9975717886847509 reduced X^2 of all evaluated imaging data combined (without degrees of freedom subtracted).
+reduced chi^2 of data  0 =  0.9975717886847507
+</pre></div>
+</div>
+<img alt="../../_images/91aef332660fba6e4d3bed02afd59bae31f9d56e0560ff88de8c72c8ebcc0fd4.png" src="../../_images/91aef332660fba6e4d3bed02afd59bae31f9d56e0560ff88de8c72c8ebcc0fd4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chain_list_ps</span><span class="p">)):</span>
+    <span class="n">chain_plot</span><span class="o">.</span><span class="n">plot_chain_list</span><span class="p">(</span><span class="n">chain_list_ps</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    
+<span class="n">sampler_type_ps</span><span class="p">,</span> <span class="n">samples_mcmc_ps</span><span class="p">,</span> <span class="n">param_mcmc_ps</span><span class="p">,</span> <span class="n">dist_mcmc_ps</span>  <span class="o">=</span> <span class="n">chain_list_ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of non-linear parameters in the MCMC process: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_mcmc_ps</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters in order: &quot;</span><span class="p">,</span> <span class="n">param_mcmc_ps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of evaluations in the MCMC process: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">samples_mcmc_ps</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of non-linear parameters in the MCMC process:  17
+parameters in order:  [&#39;theta_E_lens0&#39;, &#39;gamma1_od_lens1&#39;, &#39;gamma2_od_lens1&#39;, &#39;gamma1_los_lens1&#39;, &#39;gamma2_los_lens1&#39;, &#39;omega_los_lens1&#39;, &#39;R_sersic_source_light0&#39;, &#39;n_sersic_source_light0&#39;, &#39;e1_source_light0&#39;, &#39;e2_source_light0&#39;, &#39;center_x_source_light0&#39;, &#39;center_y_source_light0&#39;, &#39;ra_image&#39;, &#39;ra_image&#39;, &#39;dec_image&#39;, &#39;dec_image&#39;, &#39;D_dt&#39;]
+number of evaluations in the MCMC process:  170000
+</pre></div>
+</div>
+<img alt="../../_images/651972f310878d017d6dcc8754aa87e44aa23c37b338d55c5e2ea1c116817d25.png" src="../../_images/651972f310878d017d6dcc8754aa87e44aa23c37b338d55c5e2ea1c116817d25.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraints on the parameters: define the labels and expected values</span>
+
+<span class="n">labels_ps</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$\theta_{\rm E}$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$\gamma^</span><span class="si">{od}</span><span class="s1">_1$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$\gamma^</span><span class="si">{od}</span><span class="s1">_2$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$\gamma^{\rm LOS}_1$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$\gamma^{\rm LOS}_2$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$\omega_{\rm LOS}$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$R_{\rm Sérsic}$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$n_{\rm Sérsic}$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$e_1^{\rm source}$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$e_2^{\rm source}$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$x_s$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$y_s$&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$D_{\rm \Delta t}$&#39;</span><span class="p">]</span>
+
+<span class="n">expected_values_ps</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_SIS</span><span class="p">[</span><span class="s1">&#39;theta_E&#39;</span><span class="p">],</span>
+                      <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">],</span>
+                      <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma2_od&#39;</span><span class="p">],</span>
+                      <span class="n">gamma1_los</span><span class="p">,</span>
+                      <span class="n">gamma2_los</span><span class="p">,</span>
+                      <span class="n">omega_los</span><span class="p">,</span>
+                      <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">],</span>
+                      <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;n_sersic&#39;</span><span class="p">],</span>
+                      <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;e1&#39;</span><span class="p">],</span>
+                      <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;e2&#39;</span><span class="p">],</span>
+                      <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;center_x&#39;</span><span class="p">],</span>
+                      <span class="n">kwargs_sersic</span><span class="p">[</span><span class="s1">&#39;center_y&#39;</span><span class="p">],</span>
+                      <span class="n">ddt</span><span class="p">]</span>
+
+<span class="n">n_ps</span><span class="p">,</span> <span class="n">num_param_ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">samples_mcmc_ps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Contour plot<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the Param class of lenstronomy to access only the LOS and time delay parameters for plotting</span>
+
+<span class="kn">from</span> <span class="nn">lenstronomy.Sampling.parameters</span> <span class="kn">import</span> <span class="n">Param</span>
+
+<span class="n">param</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">kwargs_model_ps</span><span class="p">,</span> <span class="n">fixed_lens</span><span class="p">,</span> <span class="n">fixed_source</span><span class="p">,</span> 
+              <span class="n">kwargs_fixed_ps</span> <span class="o">=</span> <span class="n">fixed_ps</span><span class="p">,</span> 
+              <span class="n">kwargs_fixed_special</span> <span class="o">=</span> <span class="n">fixed_cosmo</span><span class="p">,</span> 
+              <span class="n">kwargs_lens_init</span> <span class="o">=</span> <span class="n">kwargs_result_ps</span><span class="p">[</span><span class="s1">&#39;kwargs_lens&#39;</span><span class="p">],</span> 
+              <span class="o">**</span><span class="n">kwargs_constraints_ps</span><span class="p">)</span>
+
+<span class="n">mcmc_new_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">labels_new</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$\gamma^</span><span class="si">{od}</span><span class="s1">_1$&#39;</span><span class="p">,</span> 
+              <span class="sa">r</span><span class="s1">&#39;$\gamma^</span><span class="si">{od}</span><span class="s1">_2$&#39;</span><span class="p">,</span> 
+              <span class="sa">r</span><span class="s1">&#39;$\gamma^{\rm LOS}_1$&#39;</span><span class="p">,</span> 
+              <span class="sa">r</span><span class="s1">&#39;$\gamma^{\rm LOS}_2$&#39;</span><span class="p">,</span> 
+              <span class="sa">r</span><span class="s1">&#39;$D_{\rm \Delta t}$&#39;</span><span class="p">]</span>
+
+<span class="n">expected_values_new</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">],</span>
+                       <span class="n">kwargs_LOS</span><span class="p">[</span><span class="s1">&#39;gamma2_od&#39;</span><span class="p">],</span>
+                       <span class="n">gamma1_los</span><span class="p">,</span>
+                       <span class="n">gamma2_los</span><span class="p">,</span>
+                       <span class="n">ddt</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">samples_mcmc_ps</span><span class="p">)):</span>
+    <span class="n">kwargs_res</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">args2kwargs</span><span class="p">(</span><span class="n">samples_mcmc_ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">D_dt</span>       <span class="o">=</span> <span class="n">kwargs_res</span><span class="p">[</span><span class="s1">&#39;kwargs_special&#39;</span><span class="p">][</span><span class="s1">&#39;D_dt&#39;</span><span class="p">]</span>
+    <span class="n">gamma1_od</span>  <span class="o">=</span> <span class="n">kwargs_res</span><span class="p">[</span><span class="s1">&#39;kwargs_lens&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;gamma1_od&#39;</span><span class="p">]</span>
+    <span class="n">gamma2_od</span>  <span class="o">=</span> <span class="n">kwargs_res</span><span class="p">[</span><span class="s1">&#39;kwargs_lens&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;gamma2_od&#39;</span><span class="p">]</span>
+    <span class="n">gamma1_LOS</span> <span class="o">=</span> <span class="n">kwargs_res</span><span class="p">[</span><span class="s1">&#39;kwargs_lens&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;gamma1_los&#39;</span><span class="p">]</span>
+    <span class="n">gamma2_LOS</span> <span class="o">=</span> <span class="n">kwargs_res</span><span class="p">[</span><span class="s1">&#39;kwargs_lens&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;gamma2_los&#39;</span><span class="p">]</span>
+    <span class="n">mcmc_new_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">gamma1_od</span><span class="p">,</span> <span class="n">gamma2_od</span><span class="p">,</span> <span class="n">gamma1_LOS</span><span class="p">,</span> <span class="n">gamma2_LOS</span><span class="p">,</span> <span class="n">D_dt</span><span class="p">])</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">corner</span><span class="o">.</span><span class="n">corner</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mcmc_new_list</span><span class="p">),</span> 
+                     <span class="n">labels</span> <span class="o">=</span> <span class="n">labels_new</span><span class="p">,</span>
+                     <span class="n">truths</span> <span class="o">=</span> <span class="n">expected_values_new</span><span class="p">,</span>
+                     <span class="n">truth_color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> 
+                     <span class="n">show_titles</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                     <span class="n">title_fmt</span> <span class="o">=</span> <span class="s1">&#39;.4f&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/96a1c0dbf1e3405042ff945dd4e5fc6f4a638b97b5d549a37d3770e3ece374c6.png" src="../../_images/96a1c0dbf1e3405042ff945dd4e5fc6f4a638b97b5d549a37d3770e3ece374c6.png" />
+</div>
+</div>
+<p><a class="reference internal" href="#contents"><span class="xref myst">Back to contents</span></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Notebooks\LineOfSightEffects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../LensModeling/cosmic_shear_with_Einstein_ring_simulations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cosmic shear with Einstein ring simulations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Numerics/solving_lens_equation_and_computing_flux_ratios.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">lenstronomy lens equation solver and flux ratios computation example notebook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory">Theory</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#boldsymbol-gamma-ab">\boldsymbol{\Gamma}_{ab}</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents <a name="contents"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-singleplanelos-class-and-the-los-model">The SinglePlaneLOS() class and the <code class="docutils literal notranslate"><span class="pre">'LOS'</span></code> model <a name="los"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-los-minimal-model">The <code class="docutils literal notranslate"><span class="pre">'LOS_MINIMAL'</span></code> model<a name="los_minimal"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-an-image">Generating an image <a name="image"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#including-point-sources-and-time-delays">Including point sources and time delays <a name="ps"> </a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-delays">Time delays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-inference">Parameter inference <a name="inf"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contour-plot">Contour plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-inference-with-time-delays">Parameter inference with time delays <a name="inf_td"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contour plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

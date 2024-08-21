@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Units, coordiante system and parameter definitions in lenstronomy &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/GettingStarted/units_coordinates_parameters_definitions';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="FITS handling and extracting needed information from the data prior to modeling" href="fits_handling_and_extracting_needed_information_from_the_data.html" />
+    <link rel="prev" title="lenstronomy starting guide" href="starting_guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../starting_guide.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../starting_guide.html">
+                    lenstronomy starting guide
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="starting_guide.html"><em>lenstronomy</em> starting guide</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Units, coordiante system and parameter definitions in lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fits_handling_and_extracting_needed_information_from_the_data.html">FITS handling and extracting needed information from the data prior to modeling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lens Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_simple_Einstein_ring.html">Simple ring parameter constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_doubly_imaged_quasar.html">Double modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_quadruply_imaged_quasar.html">Quad modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_multiple_bands_simultaneously.html">Multi-band fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/source_reconstruction_with_shapelets.html">Shapelet source reconstruction</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modelling_of_catalogue_data.html">Modelling of catalogue data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/cosmic_shear_with_Einstein_ring_simulations.html">Cosmic shear with Einstein ring simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Line-of-Sight Effects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LineOfSightEffects/line-of-sight_effects_tutorial.html">Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code></a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/solving_lens_equation_and_computing_flux_ratios.html">lenstronomy lens equation solver and flux ratios computation example notebook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/lenstronomy_numerics.html">lenstronomy numerics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulation_api.html">SimulationAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/skypy_meets_lenstronomy.html">Skypy meets lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulating_different_telescopes.html">Simulating different telescopes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Galaxy Light Fitting</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/galfitting_with_lenstronomy.html">“Galfitting” with lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/quasar_host_galaxy_decomposition.html">Quasar-host galaxy decomposition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dark Matter Substructure</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_simple_example.html">Substructure challenge - a simple example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_mock_production.html">Substructure Challenge - Mock production notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-Delay Cosmography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_simulations.html">Time delay-cosmography simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_with_uncertain_psf.html">Time delay-cosmography with uncertain PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/sampling_of_catalogue_data_with_external_information.html">Sampling of catalogue data with external information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmology_sampling_of_cosmographic_posteriors.html">Cosmology sampling of cosmographic posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmographic_uncertainty_estimation_and_forecasting_with_kinematics.html">Cosmographic uncertainty estimation and forecasting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clusters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Clusters/clusters.html">Clusters</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FNotebooks/GettingStarted/units_coordinates_parameters_definitions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Notebooks/GettingStarted/units_coordinates_parameters_definitions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Units, coordiante system and parameter definitions in lenstronomy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units-in-lenstronomy">Units in lenstronomy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-definitions">Coordinate system definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-definitions">Parameter definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ellipticity-definition-for-light-and-lens-models">Ellipticity definition for light and lens models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shear-definition">Shear definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-and-surface-brightness-definitions">Flux and surface brightness definitions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deflection-angle-definition">Deflection angle definition</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="units-coordiante-system-and-parameter-definitions-in-lenstronomy">
+<h1>Units, coordiante system and parameter definitions in lenstronomy<a class="headerlink" href="#units-coordiante-system-and-parameter-definitions-in-lenstronomy" title="Link to this heading">#</a></h1>
+<p>This notebook goes into some detail in the definition of units used in the parameters and coordinate system. This notebook supplements the starting guide and goes a bit deeper in certain aspects, usefull for beginners as well as advanced usage.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure lenstronomy is installed, otherwise install the latest pip version</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">lenstronomy</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>lenstronomy
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">lenstronomy.Plots</span> <span class="kn">import</span> <span class="n">lens_plot</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Plots</span> <span class="kn">import</span> <span class="n">plot_util</span>
+
+<span class="kn">from</span> <span class="nn">lenstronomy.Data.pixel_grid</span> <span class="kn">import</span> <span class="n">PixelGrid</span>
+<span class="kn">import</span> <span class="nn">lenstronomy.Util.param_util</span> <span class="k">as</span> <span class="nn">param_util</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Util</span> <span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.LightModel.light_model</span> <span class="kn">import</span> <span class="n">LightModel</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.LensModel.lens_model</span> <span class="kn">import</span> <span class="n">LensModel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="units-in-lenstronomy">
+<h2>Units in lenstronomy<a class="headerlink" href="#units-in-lenstronomy" title="Link to this heading">#</a></h2>
+<p>The philosophy of lenstronomy is to describe data in a parameterized form. Thus the primary units used in lenstronomy are angles on the sky and for the lensing operators the mapping between the image to the source plane anlge (reduced deflection anlge).
+Physical units that require an absolute scale/distance to be assumed are avoided in lenstronomy whenever possible. E.g. a relative Fermat potential has units angle^2 and only when computing the time delay, lenstronomy needs a cosmology assumption and assumes the angles to be in units of arcseconds^2. We recommend the user to use relative arcseconds as their units of choice but any other scale can be used provided the conversion to physical units are changed.</p>
+</section>
+<section id="coordinate-system-definitions">
+<h2>Coordinate system definitions<a class="headerlink" href="#coordinate-system-definitions" title="Link to this heading">#</a></h2>
+<p>lenstronomy operates on a coordinate system and does not use the pixel units as a basis. Instead, lenstronomy requires a zero point and a linear mapping matrix between the shift of one pixel in units of the two angles on the sky. This allows simultaneous simulation/modelling of shifted or rotated exposures as well as data with different pixel scales.</p>
+<p>The user can specify this coordinate system arbitrarly (it does not necessarily be the equitorial coordinate system where RA is E and DEC is N) and model infered quantities are made in reference to the coordinate system of choice.</p>
+<p>In a fits header, the quantities CD1_1, CD1_2, CD2_1, CD2_2 are the matrix elements needed. Attention: Be aware of the units and translate them in arcseconds!</p>
+<p>In the following, we give two examples of initializing a coordinate grid, first with RA to positive y-axis (N) and DEC to negative x-axis (E) and second from matrix elements of the fits header.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deltaPix</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># size of pixel in angular coordinates #</span>
+
+<span class="c1"># x-axis is going W and y-axis is going N</span>
+<span class="n">ra_at_xy_0</span><span class="p">,</span> <span class="n">dec_at_xy_0</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.5</span> <span class="c1"># coordinate in angles (RA/DEC) at the position of the pixel edge (0,0)</span>
+<span class="n">CD1_1</span><span class="p">,</span> <span class="n">CD1_2</span><span class="p">,</span> <span class="n">CD2_1</span><span class="p">,</span> <span class="n">CD2_2</span> <span class="o">=</span> <span class="o">-</span><span class="n">deltaPix</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">deltaPix</span>  <span class="c1"># transformation matrix elements (in units arc seconds, transform the &#39;CD1_1&#39; elements etc. of the fits header in arc seconds!)</span>
+<span class="n">transform_pix2angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">CD1_1</span><span class="p">,</span> <span class="n">CD1_2</span><span class="p">],</span> <span class="p">[</span><span class="n">CD2_1</span><span class="p">,</span> <span class="n">CD2_2</span><span class="p">]])</span>  <span class="c1"># linear translation matrix of a shift in pixel in a shift in coordinates</span>
+<span class="n">kwargs_pixel</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nx&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;ny&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>  <span class="c1"># number of pixels per axis</span>
+                <span class="s1">&#39;ra_at_xy_0&#39;</span><span class="p">:</span> <span class="n">ra_at_xy_0</span><span class="p">,</span>  <span class="c1"># RA at pixel (0,0)</span>
+                <span class="s1">&#39;dec_at_xy_0&#39;</span><span class="p">:</span> <span class="n">dec_at_xy_0</span><span class="p">,</span>  <span class="c1"># DEC at pixel (0,0)</span>
+                <span class="s1">&#39;transform_pix2angle&#39;</span><span class="p">:</span> <span class="n">transform_pix2angle</span><span class="p">}</span> 
+<span class="n">pixel_grid</span> <span class="o">=</span> <span class="n">PixelGrid</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs_pixel</span><span class="p">)</span>
+
+<span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">=</span> <span class="n">pixel_grid</span><span class="o">.</span><span class="n">map_coord2pix</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">)</span>
+
+<span class="n">ra_pos</span><span class="p">,</span> <span class="n">dec_pos</span> <span class="o">=</span> <span class="n">pixel_grid</span><span class="o">.</span><span class="n">map_pix2coord</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ra_pos</span><span class="p">,</span> <span class="n">dec_pos</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plot_util</span><span class="o">.</span><span class="n">coordinate_arrows</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">pixel_grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># custom coordinate system with a rotation angle</span>
+
+<span class="c1"># in units of degrees as normally defined in fits headers:</span>
+
+<span class="n">psi</span> <span class="o">=</span> <span class="mf">0.3</span>  <span class="c1"># rotation angle in North to West in radian</span>
+<span class="n">CD1_1</span> <span class="o">=</span> <span class="o">-</span><span class="n">deltaPix</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">CD1_2</span> <span class="o">=</span> <span class="n">deltaPix</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">CD2_1</span> <span class="o">=</span> <span class="n">deltaPix</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+<span class="n">CD2_2</span> <span class="o">=</span> <span class="n">deltaPix</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+
+
+<span class="n">transform_pix2angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">CD1_1</span><span class="p">,</span> <span class="n">CD1_2</span><span class="p">],</span> <span class="p">[</span><span class="n">CD2_1</span><span class="p">,</span> <span class="n">CD2_2</span><span class="p">]])</span>  <span class="c1"># linear translation matrix of a shift in pixel in a shift in coordinates</span>
+<span class="n">ra_at_xy_0</span><span class="p">,</span> <span class="n">dec_at_xy_0</span> <span class="o">=</span> <span class="n">transform_pix2angle</span><span class="o">.</span><span class="n">dot</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">kwargs_pixel_rot</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nx&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;ny&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>  <span class="c1"># number of pixels per axis</span>
+                <span class="s1">&#39;ra_at_xy_0&#39;</span><span class="p">:</span> <span class="n">ra_at_xy_0</span><span class="p">,</span>  <span class="c1"># RA at pixel (0,0)</span>
+                <span class="s1">&#39;dec_at_xy_0&#39;</span><span class="p">:</span> <span class="n">dec_at_xy_0</span><span class="p">,</span>  <span class="c1"># DEC at pixel (0,0)</span>
+                <span class="s1">&#39;transform_pix2angle&#39;</span><span class="p">:</span> <span class="n">transform_pix2angle</span><span class="p">}</span> 
+<span class="n">pixel_grid_rot</span> <span class="o">=</span> <span class="n">PixelGrid</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs_pixel_rot</span><span class="p">)</span>
+
+<span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">=</span> <span class="n">pixel_grid_rot</span><span class="o">.</span><span class="n">map_coord2pix</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">)</span>
+
+<span class="n">ra_pos</span><span class="p">,</span> <span class="n">dec_pos</span> <span class="o">=</span> <span class="n">pixel_grid_rot</span><span class="o">.</span><span class="n">map_pix2coord</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ra_pos</span><span class="p">,</span> <span class="n">dec_pos</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plot_util</span><span class="o">.</span><span class="n">coordinate_arrows</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">pixel_grid_rot</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50.0 50.0
+0.0 0.0
+</pre></div>
+</div>
+<img alt="../../_images/900eaef37b6463e76076999f2a90347a5691f9fb56548daf0738f9225d1d9fd4.png" src="../../_images/900eaef37b6463e76076999f2a90347a5691f9fb56548daf0738f9225d1d9fd4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50.0 50.0
+0.0 0.0
+</pre></div>
+</div>
+<img alt="../../_images/6fabd234915e145d12e0f7a0e37184fddf1aa12c09e235dfea249e97b76d26ec.png" src="../../_images/6fabd234915e145d12e0f7a0e37184fddf1aa12c09e235dfea249e97b76d26ec.png" />
+</div>
+</div>
+</section>
+<section id="parameter-definitions">
+<h2>Parameter definitions<a class="headerlink" href="#parameter-definitions" title="Link to this heading">#</a></h2>
+<p>Some parameters do have directional information imprinted, and thus depend on the coordinate system applied. In particular, the ellipticity components and light and lens profiles as well as shear components in the lens models are of such nature.</p>
+<p>In the following we go through those parameters and relate their definition with respect of a coordinate system with North to top and East to the left.</p>
+<section id="ellipticity-definition-for-light-and-lens-models">
+<h3>Ellipticity definition for light and lens models<a class="headerlink" href="#ellipticity-definition-for-light-and-lens-models" title="Link to this heading">#</a></h3>
+<p>A widely used definition of elliptical shapes are with the axis ratio <span class="math notranslate nohighlight">\(q=b/a\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> is the minor and <span class="math notranslate nohighlight">\(a\)</span> the major axis, and position angle <span class="math notranslate nohighlight">\(phi\)</span> of the major axis.</p>
+<p>In lenstronomy, ellipticities are defined in the complex ellipticity modulus:</p>
+<p><span class="math notranslate nohighlight">\( e_1= \frac{1-q}{1+q}\cos(2 \phi)\)</span></p>
+<p><span class="math notranslate nohighlight">\( e_2= \frac{1-q}{1+q}\sin(2 \phi)\)</span></p>
+<p>The definition with (<span class="math notranslate nohighlight">\(e_1\)</span>, <span class="math notranslate nohighlight">\(e_2\)</span>) allows for a continues parameter space that makes sampling more efficient than with axis ratio <span class="math notranslate nohighlight">\(q\)</span> and position angle <span class="math notranslate nohighlight">\(\phi\)</span>.
+lenstronomy has the functionality to map (<span class="math notranslate nohighlight">\(e_1\)</span>, <span class="math notranslate nohighlight">\(e_2\)</span>) into (<span class="math notranslate nohighlight">\(q\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span>) and vice versa (see example below).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we get the coordinates for each pixel of the grid defined above</span>
+<span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span> <span class="o">=</span> <span class="n">pixel_grid</span><span class="o">.</span><span class="n">pixel_coordinates</span>
+
+<span class="n">frame_size</span> <span class="o">=</span> <span class="n">deltaPix</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_grid</span><span class="p">)</span>
+
+<span class="c1"># axis ratio (minor/major axis)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="c1"># angle of major axis (radian)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="c1"># major axis direction from E to N</span>
+<span class="n">e1</span><span class="p">,</span> <span class="n">e2</span> <span class="o">=</span> <span class="n">param_util</span><span class="o">.</span><span class="n">phi_q2_ellipticity</span><span class="p">(</span><span class="n">phi</span><span class="o">=</span><span class="n">phi</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+<span class="c1"># inverse transformation for completeness (redundant)</span>
+<span class="n">phi</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">param_util</span><span class="o">.</span><span class="n">ellipticity2phi_q</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+
+
+<span class="c1"># here we model an elliptical Gaussian light profile</span>
+<span class="n">light</span> <span class="o">=</span> <span class="n">LightModel</span><span class="p">(</span><span class="n">light_model_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GAUSSIAN_ELLIPSE&#39;</span><span class="p">])</span>
+<span class="n">kwargs_light</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="n">e1</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="n">e2</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}]</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">light</span><span class="o">.</span><span class="n">surface_brightness</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">kwargs_light</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">])</span>
+<span class="n">plot_util</span><span class="o">.</span><span class="n">coordinate_arrows</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">frame_size</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">pixel_grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># and here we model the convergence of an isothermal ellipsoid lens profile</span>
+<span class="n">lens</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">lens_model_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SIE&#39;</span><span class="p">])</span>
+<span class="n">kwargs_lens</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="n">e1</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="n">e2</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}]</span>
+<span class="n">kappa</span> <span class="o">=</span> <span class="n">lens</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">kwargs_lens</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kappa</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot_util</span><span class="o">.</span><span class="n">coordinate_arrows</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">frame_size</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">pixel_grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8
+</pre></div>
+</div>
+<img alt="../../_images/48d5a1d3ba6174ec6b4973b2c655d21c1655d86cbafa4a5e8e18d6efcfcf0f39.png" src="../../_images/48d5a1d3ba6174ec6b4973b2c655d21c1655d86cbafa4a5e8e18d6efcfcf0f39.png" />
+<img alt="../../_images/ee3e892bf0b94ff53600be2dff568760724f5bc0475cb23e04be061661a02950.png" src="../../_images/ee3e892bf0b94ff53600be2dff568760724f5bc0475cb23e04be061661a02950.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we check the axis ratio definition by re-scaling the coordinates and see whether the convergence profile becomes azimuthal.</span>
+<span class="c1"># This only works when the rotation is on-axis.</span>
+
+<span class="c1"># re-scale and rotate coordinates in opposite directon</span>
+<span class="n">x_grid_rescaled</span> <span class="o">=</span> <span class="n">x_grid</span> <span class="o">/</span> <span class="n">q</span>
+<span class="n">x_grid_rot</span><span class="p">,</span> <span class="n">y_grid_rot</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">x_grid_rescaled</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">angle</span><span class="o">=-</span><span class="n">phi</span><span class="p">)</span>
+
+<span class="n">kappa</span> <span class="o">=</span> <span class="n">lens</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="n">x_grid_rot</span><span class="p">,</span> <span class="n">y_grid_rot</span><span class="p">,</span> <span class="n">kwargs_lens</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kappa</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot_util</span><span class="o">.</span><span class="n">coordinate_arrows</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">frame_size</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">pixel_grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/97f999cb8e6952f93bd1c49452daed07bd96199210ef257a42f8f0ccf7385308.png" src="../../_images/97f999cb8e6952f93bd1c49452daed07bd96199210ef257a42f8f0ccf7385308.png" />
+</div>
+</div>
+</section>
+<section id="shear-definition">
+<h3>Shear definition<a class="headerlink" href="#shear-definition" title="Link to this heading">#</a></h3>
+<p>The ‘SHEAR’ model uses the two shear components named ‘gamma1’ and ‘gamma2’ as input parameters. Lenstronomy provides functionality to turn those into shear strength and direction with its utility functions. There is also a lens model ‘SHEAR_GAMMA_PSI’ which operates in ‘gamma_ext’ and ‘psi_ext’ parameters directly.</p>
+<p>To demonstrate the definiton of the shear direction, we simulate a spherical surface brightness profile that is sheared.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shear strength</span>
+<span class="n">gamma_ext</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="c1"># shear direction</span>
+<span class="n">psi_ext</span> <span class="o">=</span> <span class="mf">0.3</span>  <span class="c1"># the shear angle is defined in distorting along East to North</span>
+<span class="c1"># distortion matrix</span>
+<span class="n">gamma1</span><span class="p">,</span> <span class="n">gamma2</span> <span class="o">=</span> <span class="n">param_util</span><span class="o">.</span><span class="n">shear_polar2cartesian</span><span class="p">(</span><span class="n">phi</span><span class="o">=</span><span class="n">psi_ext</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="n">gamma_ext</span><span class="p">)</span>
+<span class="c1"># inverse transform</span>
+<span class="n">gamma_ext</span><span class="p">,</span> <span class="n">psi_ext</span> <span class="o">=</span> <span class="n">param_util</span><span class="o">.</span><span class="n">shear_cartesian2polar</span><span class="p">(</span><span class="n">gamma1</span><span class="p">,</span> <span class="n">gamma2</span><span class="p">)</span>
+
+<span class="c1"># we initiate a SHEAR lens model</span>
+<span class="n">shear</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">lens_model_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SHEAR_REDUCED&#39;</span><span class="p">])</span>
+<span class="n">kwargs_shear</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;gamma1&#39;</span><span class="p">:</span> <span class="n">gamma1</span><span class="p">,</span> <span class="s1">&#39;gamma2&#39;</span><span class="p">:</span> <span class="n">gamma2</span><span class="p">}]</span>
+<span class="n">x_sheard</span><span class="p">,</span> <span class="n">y_sheard</span> <span class="o">=</span> <span class="n">shear</span><span class="o">.</span><span class="n">ray_shooting</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">kwargs_shear</span><span class="p">)</span>
+
+<span class="c1"># and here we illustrate the shear effect by distorting a spherical Gaussian light distribution on a coordinate grid defined above</span>
+<span class="n">kwargs_light_spherical</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}]</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">light</span><span class="o">.</span><span class="n">surface_brightness</span><span class="p">(</span><span class="n">x_sheard</span><span class="p">,</span> <span class="n">y_sheard</span><span class="p">,</span> <span class="n">kwargs_light_spherical</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame_size</span><span class="p">])</span>
+<span class="n">plot_util</span><span class="o">.</span><span class="n">coordinate_arrows</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">frame_size</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">pixel_grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4ea2be6b275e1fd086af20d89007216eb29923f7deb358e1229e68546e98effb.png" src="../../_images/4ea2be6b275e1fd086af20d89007216eb29923f7deb358e1229e68546e98effb.png" />
+</div>
+</div>
+</section>
+<section id="flux-and-surface-brightness-definitions">
+<h3>Flux and surface brightness definitions<a class="headerlink" href="#flux-and-surface-brightness-definitions" title="Link to this heading">#</a></h3>
+<p>Light model profile amplitudes are described in units of surface brightness (counts per time per square angle). The ‘amp’ parameter is the linear scaling parameter. Point source amplitudes are paramterized as counts per time. The <span class="math notranslate nohighlight">\(\texttt{SimulationAPI}\)</span> module comes with convenient functionality to define specific light profiles (such as Sersic profiles) in the astronomical magnitude system - provided that the observations are defined with a magnitude zero point.</p>
+<p>Here we provide a brief example how to turn a single Sersic light profile fit by lenstronomy into an astronomical magnitude.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Sersic model</span>
+<span class="n">light_model</span> <span class="o">=</span> <span class="n">LightModel</span><span class="p">(</span><span class="n">light_model_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SERSIC&#39;</span><span class="p">])</span>
+<span class="n">kwargs_light</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}]</span>
+
+<span class="c1"># total flux for the Sersic profile (in counts per second)</span>
+<span class="c1"># make sure to solve the linear equation first when using an output of a fitting, which does not provide you with that number!</span>
+<span class="n">flux_cps</span> <span class="o">=</span> <span class="n">light_model</span><span class="o">.</span><span class="n">total_flux</span><span class="p">(</span><span class="n">kwargs_light</span><span class="p">)</span>
+<span class="c1"># here we sum up all the profiles (if we want to, in this example does not have an effect)</span>
+<span class="n">flux_cps_tot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">flux_cps</span><span class="p">)</span>
+<span class="n">magnitude_zero_point</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Util</span> <span class="kn">import</span> <span class="n">data_util</span>
+<span class="n">magnitude</span> <span class="o">=</span> <span class="n">data_util</span><span class="o">.</span><span class="n">cps2magnitude</span><span class="p">(</span><span class="n">flux_cps_tot</span><span class="p">,</span> <span class="n">magnitude_zero_point</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21.968732628402677
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="deflection-angle-definition">
+<h2>Deflection angle definition<a class="headerlink" href="#deflection-angle-definition" title="Link to this heading">#</a></h2>
+<p>The lens model profiles are defined in reduced deflection angles as seen on the sky relative to the unlensed angluar position. To convert these in physical units of mass, the angular diameter distances are required.
+Also we note, the lenstronomy parameterization are primarily phenomenologically driven, meaning having them suited to describe distorted data, rather than physically motivated nor parameterized. As an example we give the definition and conversion functionality for the Navarro-Frenk-White (NFW) profile.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lenstronomy.Cosmo.lens_cosmo</span> <span class="kn">import</span> <span class="n">LensCosmo</span>
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="kn">import</span> <span class="n">FlatLambdaCDM</span>
+<span class="n">cosmo</span> <span class="o">=</span> <span class="n">FlatLambdaCDM</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">Om0</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">Ob0</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">lens_cosmo</span> <span class="o">=</span> <span class="n">LensCosmo</span><span class="p">(</span><span class="n">z_lens</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_source</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">cosmo</span><span class="o">=</span><span class="n">cosmo</span><span class="p">)</span>
+
+<span class="c1"># Here we compute the angular scale of Rs on the sky (in arc seconds) and the deflection angle at Rs (in arc seconds):</span>
+
+<span class="n">Rs_angle</span><span class="p">,</span> <span class="n">alpha_Rs</span> <span class="o">=</span> <span class="n">lens_cosmo</span><span class="o">.</span><span class="n">nfw_physical2angle</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">13</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># And here we perform the inverse calculation given Rs_angle and alpha_Rs to return the physical halo properties.</span>
+
+<span class="n">rho0</span><span class="p">,</span> <span class="n">Rs</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">r200</span><span class="p">,</span> <span class="n">M200</span> <span class="o">=</span> <span class="n">lens_cosmo</span><span class="o">.</span><span class="n">nfw_angle2physical</span><span class="p">(</span><span class="n">Rs_angle</span><span class="o">=</span><span class="n">Rs_angle</span><span class="p">,</span> <span class="n">alpha_Rs</span><span class="o">=</span><span class="n">alpha_Rs</span><span class="p">)</span>
+
+<span class="c1"># The lens model calculation uses angular units as arguments! So to execute a deflection angle calculation one uses</span>
+
+<span class="kn">from</span> <span class="nn">lenstronomy.LensModel.Profiles.nfw</span> <span class="kn">import</span> <span class="n">NFW</span>
+<span class="n">nfw</span> <span class="o">=</span> <span class="n">NFW</span><span class="p">()</span>
+<span class="n">alpha_x</span><span class="p">,</span> <span class="n">alpha_y</span> <span class="o">=</span> <span class="n">nfw</span><span class="o">.</span><span class="n">derivatives</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">Rs</span><span class="o">=</span><span class="n">Rs_angle</span><span class="p">,</span> <span class="n">alpha_Rs</span><span class="o">=</span><span class="n">alpha_Rs</span><span class="p">,</span> <span class="n">center_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Notebooks\GettingStarted"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="starting_guide.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><em>lenstronomy</em> starting guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="fits_handling_and_extracting_needed_information_from_the_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">FITS handling and extracting needed information from the data prior to modeling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units-in-lenstronomy">Units in lenstronomy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-definitions">Coordinate system definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-definitions">Parameter definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ellipticity-definition-for-light-and-lens-models">Ellipticity definition for light and lens models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shear-definition">Shear definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-and-surface-brightness-definitions">Flux and surface brightness definitions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deflection-angle-definition">Deflection angle definition</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
