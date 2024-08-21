@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FITS handling and extracting needed information from the data prior to modeling &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/GettingStarted/fits_handling_and_extracting_needed_information_from_the_data';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Simple ring parameter constraints" href="../LensModeling/modeling_a_simple_Einstein_ring.html" />
+    <link rel="prev" title="Units, coordiante system and parameter definitions in lenstronomy" href="units_coordinates_parameters_definitions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../starting_guide.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../starting_guide.html">
+                    lenstronomy starting guide
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="starting_guide.html"><em>lenstronomy</em> starting guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units_coordinates_parameters_definitions.html">Units, coordiante system and parameter definitions in lenstronomy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">FITS handling and extracting needed information from the data prior to modeling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lens Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_simple_Einstein_ring.html">Simple ring parameter constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_doubly_imaged_quasar.html">Double modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_quadruply_imaged_quasar.html">Quad modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_multiple_bands_simultaneously.html">Multi-band fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/source_reconstruction_with_shapelets.html">Shapelet source reconstruction</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modelling_of_catalogue_data.html">Modelling of catalogue data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/cosmic_shear_with_Einstein_ring_simulations.html">Cosmic shear with Einstein ring simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Line-of-Sight Effects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LineOfSightEffects/line-of-sight_effects_tutorial.html">Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code></a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/solving_lens_equation_and_computing_flux_ratios.html">lenstronomy lens equation solver and flux ratios computation example notebook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/lenstronomy_numerics.html">lenstronomy numerics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulation_api.html">SimulationAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/skypy_meets_lenstronomy.html">Skypy meets lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulating_different_telescopes.html">Simulating different telescopes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Galaxy Light Fitting</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/galfitting_with_lenstronomy.html">“Galfitting” with lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/quasar_host_galaxy_decomposition.html">Quasar-host galaxy decomposition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dark Matter Substructure</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_simple_example.html">Substructure challenge - a simple example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_mock_production.html">Substructure Challenge - Mock production notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-Delay Cosmography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_simulations.html">Time delay-cosmography simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_with_uncertain_psf.html">Time delay-cosmography with uncertain PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/sampling_of_catalogue_data_with_external_information.html">Sampling of catalogue data with external information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmology_sampling_of_cosmographic_posteriors.html">Cosmology sampling of cosmographic posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmographic_uncertainty_estimation_and_forecasting_with_kinematics.html">Cosmographic uncertainty estimation and forecasting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clusters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Clusters/clusters.html">Clusters</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FNotebooks/GettingStarted/fits_handling_and_extracting_needed_information_from_the_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Notebooks/GettingStarted/fits_handling_and_extracting_needed_information_from_the_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>FITS handling and extracting needed information from the data prior to modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-from-fits-header">coordinate system from fits header</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-properties-from-data">noise properties from data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-spread-function-psf-estimate">point spread function (PSF) estimate</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fits-handling-and-extracting-needed-information-from-the-data-prior-to-modeling">
+<h1>FITS handling and extracting needed information from the data prior to modeling<a class="headerlink" href="#fits-handling-and-extracting-needed-information-from-the-data-prior-to-modeling" title="Link to this heading">#</a></h1>
+<p>This notebook gives an example of reading in data from a fits file and performing a modeling. Please note: lenstronomy is a modeling and analysis software package. The handling of the data, reductions and the extraction of the relevant quantities from the data are in the responsibility of the user. The examples provided here may be used as orientation for new users.</p>
+<ul class="simple">
+<li><p>General fits handling with astropy can be found here: <a class="reference external" href="https://docs.astropy.org/en/stable/io/fits/">https://docs.astropy.org/en/stable/io/fits/</a></p></li>
+<li><p>Information about astropy coordinate systems can be found here:
+<a class="reference external" href="http://docs.astropy.org/en/stable/wcs/">http://docs.astropy.org/en/stable/wcs/</a></p></li>
+<li><p>For the units and coordinate system description of lenstronomy, see the following Jupyter Notebook:
+<a class="github reference external" href="https://github.com/sibirrer/lenstronomy_extensions/blob/main/lenstronomy_extensions/Notebooks/units_coordinates_parameters.ipynb">sibirrer/lenstronomy_extensions</a></p></li>
+<li><p>For reduction of HST data you may find useful Notebooks here: <a class="github reference external" href="https://github.com/ajshajib/hst-lens">ajshajib/hst-lens</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure lenstronomy is installed, otherwise install the latest pip version</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">lenstronomy</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>lenstronomy
+</pre></div>
+</div>
+</div>
+</div>
+<section id="coordinate-system-from-fits-header">
+<h2>coordinate system from fits header<a class="headerlink" href="#coordinate-system-from-fits-header" title="Link to this heading">#</a></h2>
+<p>Most fits data formats suport the WCS class of astropy and distortion corrected pixel to coordinate transformations are supported. lenstronomy currently only supports linear transformations. This is in most cases sufficient if the linear transformations are computed at the position of the lens in the image.</p>
+<p>The linear transformations are often marked in the header of the fits file in units of degrees.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># header entries for the linear transformation (from a HST data header)</span>
+<span class="n">header</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CD1_1&#39;</span><span class="p">:</span> <span class="mf">5.73840710288063E-06</span><span class="p">,</span> 
+          <span class="s1">&#39;CD1_2&#39;</span><span class="p">:</span> <span class="mf">1.26468148676247E-05</span><span class="p">,</span> 
+          <span class="s1">&#39;CD2_1&#39;</span><span class="p">:</span> <span class="mf">1.26468146588748E-05</span><span class="p">,</span> 
+          <span class="s1">&#39;CD2_2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">5.7384070845446E-06</span><span class="p">,</span>
+          <span class="s1">&#39;NAXIS1&#39;</span><span class="p">:</span> <span class="mi">4244</span><span class="p">,</span>
+          <span class="s1">&#39;NAXIS2&#39;</span><span class="p">:</span> <span class="mi">4477</span>
+         <span class="p">}</span>
+
+<span class="c1"># read out matrix elements and convert them in units of arc seconds</span>
+<span class="n">CD1_1</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CD1_1&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>  <span class="c1"># change in arc sec per pixel d(ra)/dx</span>
+<span class="n">CD1_2</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CD1_2&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>
+<span class="n">CD2_1</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CD2_1&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>
+<span class="n">CD2_2</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CD2_2&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>
+
+<span class="c1"># generate pixel-to-coordinate transform matrix and its inverse</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">pix2coord_transform_undistorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">CD1_1</span><span class="p">,</span> <span class="n">CD1_2</span><span class="p">],</span> <span class="p">[</span><span class="n">CD2_1</span><span class="p">,</span> <span class="n">CD2_2</span><span class="p">]])</span>
+<span class="n">det</span> <span class="o">=</span> <span class="n">CD1_1</span><span class="o">*</span><span class="n">CD2_2</span> <span class="o">-</span> <span class="n">CD1_2</span><span class="o">*</span><span class="n">CD2_1</span>
+<span class="n">coord2pix_transform_undistorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">CD2_2</span><span class="p">,</span> <span class="o">-</span><span class="n">CD1_2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">CD2_1</span><span class="p">,</span> <span class="n">CD1_1</span><span class="p">]])</span><span class="o">/</span><span class="n">det</span>
+
+<span class="c1"># as an example, we set the coordinate zero point in the center of the image and compute </span>
+<span class="c1"># the coordinate at the pixel (0,0) at the edge of the image</span>
+
+<span class="c1"># read out pixel size of image</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NAXIS1&#39;</span><span class="p">)</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NAXIS2&#39;</span><span class="p">)</span>
+<span class="n">x_c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">y_c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ny</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># compute RA/DEC relative shift between the edge and the center of the image</span>
+<span class="n">dra</span><span class="p">,</span> <span class="n">ddec</span> <span class="o">=</span> <span class="n">pix2coord_transform_undistorted</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_c</span><span class="p">,</span> <span class="n">y_c</span><span class="p">]))</span>
+<span class="c1"># set edge of the image such that the center has RA/DEC = (0,0)</span>
+<span class="n">ra_at_xy_0</span><span class="p">,</span> <span class="n">dec_at_xy_0</span> <span class="o">=</span> <span class="o">-</span><span class="n">dra</span><span class="p">,</span> <span class="o">-</span><span class="n">ddec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hints:</p>
+<ul class="simple">
+<li><p>Pay attention with conversion of absolute coordinates on the sky to relative coordinates (right ascention has a scaling with declination).</p></li>
+<li><p>Set the coordinate system conveniently and well defined, e.g. with a zero point in the center of an object.</p></li>
+</ul>
+</section>
+<section id="noise-properties-from-data">
+<h2>noise properties from data<a class="headerlink" href="#noise-properties-from-data" title="Link to this heading">#</a></h2>
+<p>Noise properties can be estimated from the data. The noise implementation in lenstronomy uses a Gaussian noise component that is uniform and a Poissonian shot noise component that is directly related to the total number of independent photons hitting the detector.</p>
+<ul class="simple">
+<li><p>The Gaussian component can be estimated by e.g. computing the r.m.s. value of the pixel values in regions where no (or neglible) signal is expected.</p></li>
+<li><p>The Poissonian noise component requires the total counts per pixel, which is the exposure time x pixel values (if the units are in photons/time). Attention: sometimes the units are in ADU units and require a CCD gain conversion.</p></li>
+</ul>
+<p>Attention:</p>
+<ul class="simple">
+<li><p>Noise properties can be correlated, depending also on the data reduction steps undertaken. This notebook is not meant to be a data reduction tutorial.</p></li>
+<li><p>Be careful in checking the noise properties and units in your data. This is an important step in conduction scientific investigation and only a valid data product allows to derive a probabilistic statement.</p></li>
+</ul>
+</section>
+<section id="point-spread-function-psf-estimate">
+<h2>point spread function (PSF) estimate<a class="headerlink" href="#point-spread-function-psf-estimate" title="Link to this heading">#</a></h2>
+<p>The point spread function of the observations is a required and crucial component of any imaging modeling. The reliable extraction of this quantity from the data may be hard. The commonly used strategies are:</p>
+<ul class="simple">
+<li><p>Using a PSF library from derived or simulated products provided.</p></li>
+<li><p>Using nearby point sources (e.g. stars) to estimate the PSF.
+In some work, an iterative correction of the PSF has been performed. lenstronomy has support for this (but may not work in all circumstances and is rather involved).</p></li>
+</ul>
+<p>Attention:</p>
+<ul class="simple">
+<li><p>The PSF can vary over the scale of an image.</p></li>
+<li><p>The PSF is generally wave-length dependent and different SED objects may have slightly different PSF.</p></li>
+<li><p>The PSF imported into lenstronomy is assumed to be a point source emission at the center of the central pixel. If the PSF imported is off-centered, this can lead to bad fitting results.</p></li>
+<li><p>Do not de-convolve your image. lenstronomy performs best if the data product is untouched and the convolution is performed on the model. De-convolution is model dependent and generally there exists no unique solution.</p></li>
+</ul>
+<p>Below is an example of how a pixelized PSF is imported in the PSF() class. For more details and options of PSF models, we refer to the documentation of the PSF() class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import PSF file (here as a relative path in the lenstronomy_extension repository)</span>
+<span class="c1"># the psf_example.fits file can be found here:</span>
+<span class="c1"># https://github.com/sibirrer/lenstronomy_extensions/tree/main/Data/PSF_TinyTim</span>
+<span class="c1"># and imported from a local file path as well</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">astropy.io.fits</span> <span class="k">as</span> <span class="nn">pyfits</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">dirpath</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">module_path</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">dirpath</span><span class="p">)</span>
+<span class="n">psf_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;Data/PSF_TinyTim/psf_example.fits&#39;</span><span class="p">)</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">pyfits</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">psf_filename</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kernel</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">psf_type</span> <span class="o">=</span> <span class="s1">&#39;PIXEL&#39;</span>  <span class="c1"># &#39;gaussian&#39;, &#39;pixel&#39;, &#39;NONE&#39;</span>
+<span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">91</span>
+
+<span class="kn">from</span> <span class="nn">lenstronomy.Data.psf</span> <span class="kn">import</span> <span class="n">PSF</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Util</span> <span class="kn">import</span> <span class="n">kernel_util</span>
+<span class="n">kernel_cut</span> <span class="o">=</span> <span class="n">kernel_util</span><span class="o">.</span><span class="n">cut_psf</span><span class="p">(</span><span class="n">kernel</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">)</span>
+<span class="n">kwargs_psf</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;psf_type&#39;</span><span class="p">:</span> <span class="n">psf_type</span><span class="p">,</span> <span class="s1">&#39;kernel_point_source&#39;</span><span class="p">:</span> <span class="n">kernel_cut</span><span class="p">}</span>
+<span class="n">psf_class</span> <span class="o">=</span> <span class="n">PSF</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs_psf</span><span class="p">)</span>
+
+<span class="n">kernel_psf_class</span> <span class="o">=</span> <span class="n">psf_class</span><span class="o">.</span><span class="n">kernel_point_source</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kernel_psf_class</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sibirrer/Library/Python/3.6/lib/python/site-packages/ipykernel_launcher.py:18: RuntimeWarning: divide by zero encountered in log10
+</pre></div>
+</div>
+<img alt="../../_images/14a2f1c1ffffca81f3febf32ff414be0a7183da08c3377365722848e435a0515.png" src="../../_images/14a2f1c1ffffca81f3febf32ff414be0a7183da08c3377365722848e435a0515.png" />
+<img alt="../../_images/3a5cacb64e59dd3fc7ceb6d639f23fa453c3e79268e7dc9bfc7cf2e3b58686ed.png" src="../../_images/3a5cacb64e59dd3fc7ceb6d639f23fa453c3e79268e7dc9bfc7cf2e3b58686ed.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Notebooks\GettingStarted"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="units_coordinates_parameters_definitions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Units, coordiante system and parameter definitions in lenstronomy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../LensModeling/modeling_a_simple_Einstein_ring.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simple ring parameter constraints</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-from-fits-header">coordinate system from fits header</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-properties-from-data">noise properties from data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-spread-function-psf-estimate">point spread function (PSF) estimate</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

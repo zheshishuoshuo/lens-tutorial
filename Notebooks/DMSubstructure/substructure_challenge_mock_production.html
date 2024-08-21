@@ -1,0 +1,1096 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Substructure Challenge - Mock production notebook &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/DMSubstructure/substructure_challenge_mock_production';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Time delay-cosmography simulations" href="../TimeDelayCosmography/time_delay_cosmography_simulations.html" />
+    <link rel="prev" title="Substructure challenge - a simple example" href="substructure_challenge_simple_example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../starting_guide.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../starting_guide.html">
+                    lenstronomy starting guide
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/starting_guide.html"><em>lenstronomy</em> starting guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/units_coordinates_parameters_definitions.html">Units, coordiante system and parameter definitions in lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/fits_handling_and_extracting_needed_information_from_the_data.html">FITS handling and extracting needed information from the data prior to modeling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lens Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_simple_Einstein_ring.html">Simple ring parameter constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_doubly_imaged_quasar.html">Double modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_a_quadruply_imaged_quasar.html">Quad modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modeling_multiple_bands_simultaneously.html">Multi-band fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/source_reconstruction_with_shapelets.html">Shapelet source reconstruction</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/modelling_of_catalogue_data.html">Modelling of catalogue data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LensModeling/cosmic_shear_with_Einstein_ring_simulations.html">Cosmic shear with Einstein ring simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Line-of-Sight Effects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LineOfSightEffects/line-of-sight_effects_tutorial.html">Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code></a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/solving_lens_equation_and_computing_flux_ratios.html">lenstronomy lens equation solver and flux ratios computation example notebook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/lenstronomy_numerics.html">lenstronomy numerics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulation_api.html">SimulationAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/skypy_meets_lenstronomy.html">Skypy meets lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulating_different_telescopes.html">Simulating different telescopes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Galaxy Light Fitting</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/galfitting_with_lenstronomy.html">“Galfitting” with lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/quasar_host_galaxy_decomposition.html">Quasar-host galaxy decomposition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dark Matter Substructure</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="substructure_challenge_simple_example.html">Substructure challenge - a simple example</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Substructure Challenge - Mock production notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-Delay Cosmography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_simulations.html">Time delay-cosmography simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_with_uncertain_psf.html">Time delay-cosmography with uncertain PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/sampling_of_catalogue_data_with_external_information.html">Sampling of catalogue data with external information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmology_sampling_of_cosmographic_posteriors.html">Cosmology sampling of cosmographic posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmographic_uncertainty_estimation_and_forecasting_with_kinematics.html">Cosmographic uncertainty estimation and forecasting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clusters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Clusters/clusters.html">Clusters</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FNotebooks/DMSubstructure/substructure_challenge_mock_production.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Notebooks/DMSubstructure/substructure_challenge_mock_production.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Substructure Challenge - Mock production notebook</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-a-lens-model">1. Define a lens model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-vs-physical-units">Optical vs physical units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decompose-a-nearby-galaxy-in-high-order-shapelet-coefficients">2. decompose a nearby galaxy in high order shapelet coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lens-the-decomposed-image-through-the-lens-model">3. lens the decomposed image through the lens model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-lens-light-profile-to-the-image">4. add a lens light profile to the image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turn-the-simulation-into-realistic-imaging-data">5. turn the simulation into (realistic) imaging data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#psf-convolution">5.1 PSF convolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#down-sample-the-resolution-ot-the-pixel-size">5.2 down-sample the resolution ot the pixel size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-poisson-noise-contribution-from-the-sources">5.3 add Poisson noise contribution from the sources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-clumps">Find the clumps!</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="substructure-challenge-mock-production-notebook">
+<h1>Substructure Challenge - Mock production notebook<a class="headerlink" href="#substructure-challenge-mock-production-notebook" title="Link to this heading">#</a></h1>
+<p>This notebook leads through a procedure to produce (realistic) mock images with the lenstronomy software package. Be aware of the nummerics involved. The notebook goes through the follwing steps:</p>
+<ol class="arabic simple">
+<li><p>define a (realistic) lens model with a lot of substructure</p></li>
+<li><p>decompose a nearby galaxy in high order shapelet coefficients</p></li>
+<li><p>lens the decomposed image through the lens model</p></li>
+<li><p>add a lens light profile to the image</p></li>
+<li><p>turn the simulation to (realistic) data by applying a PSF convolution and define the pixel size.</p></li>
+</ol>
+<p>This notebook requires standard python libraries and the publicly available packages on github:</p>
+<ul class="simple">
+<li><p>lenstronomy (<a class="github reference external" href="https://github.com/sibirrer/lenstronomy">sibirrer/lenstronomy</a>) or via pypi</p></li>
+<li><p>relative path to files contained in the lenstronomy_extension repository (<a class="github reference external" href="https://github.com/sibirrer/lenstronomy_extensions">sibirrer/lenstronomy_extensions</a>)</p></li>
+</ul>
+<p>The packages are based on Birrer, Amara &amp; Refregier 2015 and the official release is presented in  Birrer &amp; Amara 2018.</p>
+<p>For further information, please get in touch with the author of this notebook, Simon Birrer: <a class="reference external" href="mailto:sibirrer&#37;&#52;&#48;gmail&#46;com">sibirrer<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>To get to know more about the lenstronomy, please consider also other example notebooks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import standard python libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">astropy.io.fits</span> <span class="k">as</span> <span class="nn">pyfits</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># make sure lenstronomy is installed, otherwise install the latest pip version</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">lenstronomy</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>lenstronomy
+
+<span class="kn">import</span> <span class="nn">lenstronomy.Util.util</span> <span class="k">as</span> <span class="nn">util</span>
+<span class="kn">import</span> <span class="nn">lenstronomy.Util.image_util</span> <span class="k">as</span> <span class="nn">image_util</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="define-a-lens-model">
+<h2>1. Define a lens model<a class="headerlink" href="#define-a-lens-model" title="Link to this heading">#</a></h2>
+<p>Here we define a lens model consistent of one main halo and quite some subclumps with some simple rendering description.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the lens model of the main deflector</span>
+<span class="n">main_halo_type</span> <span class="o">=</span> <span class="s1">&#39;SIE&#39;</span>  <span class="c1"># You have many other possibilities available. Check out the SinglePlane class!</span>
+<span class="n">kwargs_lens_main</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">kwargs_shear</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gamma1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;gamma2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">lens_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">main_halo_type</span><span class="p">,</span> <span class="s1">&#39;SHEAR&#39;</span><span class="p">]</span>
+<span class="n">kwargs_lens_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_lens_main</span><span class="p">,</span> <span class="n">kwargs_shear</span><span class="p">]</span>
+
+<span class="n">subhalo_type</span> <span class="o">=</span> <span class="s1">&#39;TNFW&#39;</span>  <span class="c1"># We chose spherical NFW profiles, feel free to chose whatever you want.</span>
+
+<span class="c1"># as an example, we render some sub-halos with a very simple distribution to be added on the main lens</span>
+<span class="n">num_subhalo</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># number of subhalos to be rendered</span>
+<span class="c1"># the parameterization of the NFW profiles are:</span>
+<span class="c1"># - Rs (radius of the scale parameter Rs in units of angles)</span>
+<span class="c1"># - theta_Rs (radial deflection angle at Rs)</span>
+<span class="c1"># - center_x, center_y, (position of the centre of the profile in angular units)</span>
+
+<span class="n">Rs_mean</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">Rs_sigma</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># dex scatter</span>
+<span class="n">theta_Rs_mean</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">theta_Rs_sigma</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># dex scatter</span>
+<span class="n">r_min</span><span class="p">,</span> <span class="n">r_max</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span>
+
+<span class="n">Rs_list</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Rs_mean</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">Rs_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_subhalo</span><span class="p">))</span>
+<span class="n">theta_Rs_list</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">theta_Rs_mean</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">theta_Rs_sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_subhalo</span><span class="p">))</span>
+<span class="n">center_x_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">r_min</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">r_max</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">num_subhalo</span><span class="p">)</span>
+<span class="n">center_y_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">r_min</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">r_max</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">num_subhalo</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subhalo</span><span class="p">):</span>
+    <span class="n">lens_model_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subhalo_type</span><span class="p">)</span>
+    <span class="n">kwargs_lens_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;alpha_Rs&#39;</span><span class="p">:</span> <span class="n">theta_Rs_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;Rs&#39;</span><span class="p">:</span> <span class="n">Rs_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                             <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="n">center_x_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="n">center_y_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                            <span class="s1">&#39;r_trunc&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="o">*</span><span class="n">Rs_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                            <span class="p">})</span>
+
+<span class="c1"># now we define a LensModel class of all the lens models combined</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.LensModel.lens_model</span> <span class="kn">import</span> <span class="n">LensModel</span>
+<span class="n">lensModel</span> <span class="o">=</span> <span class="n">LensModel</span><span class="p">(</span><span class="n">lens_model_list</span><span class="p">)</span>
+<span class="c1"># we set up a grid in coordinates and evaluate basic lensing quantities on it</span>
+<span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">numPix</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">deltapix</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">kappa</span> <span class="o">=</span> <span class="n">lensModel</span><span class="o">.</span><span class="n">kappa</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">kwargs_lens_list</span><span class="p">)</span>
+<span class="c1"># we make a 2d array out of the 1d grid points</span>
+<span class="n">kappa</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">array2image</span><span class="p">(</span><span class="n">kappa</span><span class="p">)</span>
+<span class="c1"># and plot the convergence of the lens model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kappa</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0142a33c465240b2db33782e4ab7173c226eb5ee23eb2f3c7e0affe2f87f27db.png" src="../../_images/0142a33c465240b2db33782e4ab7173c226eb5ee23eb2f3c7e0affe2f87f27db.png" />
+</div>
+</div>
+</section>
+<section id="optical-vs-physical-units">
+<h2>Optical vs physical units<a class="headerlink" href="#optical-vs-physical-units" title="Link to this heading">#</a></h2>
+<p>All lenstronomy parameters are in angular (e.g. reduced deflections) units and purely describe the optics independent of cosmology. For an NFW profile, you can use the following method to translate a physical halo to lenstronomy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_lens</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">z_source</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="kn">import</span> <span class="n">default_cosmology</span>
+<span class="n">cosmo</span> <span class="o">=</span> <span class="n">default_cosmology</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Cosmo.lens_cosmo</span> <span class="kn">import</span> <span class="n">LensCosmo</span>
+<span class="c1"># class that converts angular to physical units for a specific cosmology and redshift configuration</span>
+<span class="n">lensCosmo</span> <span class="o">=</span> <span class="n">LensCosmo</span><span class="p">(</span><span class="n">z_lens</span><span class="o">=</span><span class="n">z_lens</span><span class="p">,</span> <span class="n">z_source</span><span class="o">=</span><span class="n">z_source</span><span class="p">,</span> <span class="n">cosmo</span><span class="o">=</span><span class="n">cosmo</span><span class="p">)</span>
+
+<span class="c1"># here we turn an NFW halo defined as M200 crit and concentration into lensing quantities</span>
+<span class="n">M200</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span>
+<span class="n">concentration</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">Rs_angle_clump</span><span class="p">,</span> <span class="n">theta_Rs_clump</span> <span class="o">=</span> <span class="n">lensCosmo</span><span class="o">.</span><span class="n">nfw_physical2angle</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">M200</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">concentration</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Rs_angle_clump</span><span class="p">,</span> <span class="n">theta_Rs_clump</span><span class="p">)</span>
+
+<span class="c1"># and here we do the oposite and turn the lensing quantities into physical units</span>
+<span class="n">rho0_clump</span><span class="p">,</span> <span class="n">Rs_clump</span><span class="p">,</span> <span class="n">c_clump</span><span class="p">,</span> <span class="n">r200_clump</span><span class="p">,</span> <span class="n">M200_clump</span> <span class="o">=</span> <span class="n">lensCosmo</span><span class="o">.</span><span class="n">nfw_angle2physical</span><span class="p">(</span><span class="n">Rs_angle_clump</span><span class="p">,</span> <span class="n">theta_Rs_clump</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rho0_clump</span><span class="p">,</span> <span class="n">Rs_clump</span><span class="p">,</span> <span class="n">c_clump</span><span class="p">,</span> <span class="n">r200_clump</span><span class="p">,</span> <span class="n">M200_clump</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.46515249148844084 0.002411501895446134
+2920676532624540.0 0.002924986525384787 6.0 0.017549919152308722 1000000000.0000011
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="decompose-a-nearby-galaxy-in-high-order-shapelet-coefficients">
+<h2>2. decompose a nearby galaxy in high order shapelet coefficients<a class="headerlink" href="#decompose-a-nearby-galaxy-in-high-order-shapelet-coefficients" title="Link to this heading">#</a></h2>
+<p>Here we read in an image and decompose it in shapelet coefficient. We then use the coefficients to re-create the image (sort of like a Furier decomposition)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import NGC1300 jpg image and decompose it</span>
+<span class="kn">import</span> <span class="nn">imageio</span>
+
+<span class="c1"># find path to data</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">dirpath</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">module_path</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">dirpath</span><span class="p">)</span>
+<span class="n">ngc_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;Data/Galaxies/ngc1300.jpg&#39;</span><span class="p">)</span>
+<span class="c1"># read data, this only works if you execute this notebook within the environment of the github repo!</span>
+<span class="n">ngc_data</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">ngc_filename</span><span class="p">,</span> <span class="n">as_gray</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pilmode</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># subtract the median of an edge of the image</span>
+<span class="n">median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ngc_data</span><span class="p">[:</span><span class="mi">200</span><span class="p">,</span> <span class="p">:</span><span class="mi">200</span><span class="p">])</span>
+<span class="n">ngc_data</span> <span class="o">-=</span> <span class="n">median</span>
+
+<span class="c1"># resize the image to square size (add zeros at the edges of the non-square bits of the image)</span>
+<span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ngc_data</span><span class="p">)</span>
+<span class="n">n_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+<span class="n">n_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+<span class="n">ngc_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_max</span><span class="p">,</span> <span class="n">n_max</span><span class="p">))</span>
+<span class="n">x_start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">n_max</span> <span class="o">-</span> <span class="n">nx</span><span class="p">)</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+<span class="n">y_start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">n_max</span> <span class="o">-</span> <span class="n">ny</span><span class="p">)</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+<span class="n">ngc_square</span><span class="p">[</span><span class="n">x_start</span><span class="p">:</span><span class="n">x_start</span><span class="o">+</span><span class="n">nx</span><span class="p">,</span> <span class="n">y_start</span><span class="p">:</span><span class="n">y_start</span><span class="o">+</span><span class="n">ny</span><span class="p">]</span> <span class="o">=</span> <span class="n">ngc_data</span>
+
+<span class="c1"># we slightly convolve the image with a Gaussian convolution kernel of a few pixels (optional)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">ngc_conv</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">ndimage</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">ngc_square</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># we now degrate the pixel resoluton by a factor.</span>
+<span class="c1"># This reduces the data volume and increases the spead of the Shapelet decomposition</span>
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1"># lower resolution of image with a given factor</span>
+<span class="n">numPix_large</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ngc_conv</span><span class="p">)</span><span class="o">/</span><span class="n">factor</span><span class="p">)</span>
+<span class="n">n_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">numPix_large</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">factor</span><span class="p">)</span>
+<span class="n">ngc_cut</span> <span class="o">=</span> <span class="n">ngc_conv</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_new</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">n_new</span><span class="p">]</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">numPix</span><span class="o">=</span><span class="n">numPix_large</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">deltapix</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># make a coordinate grid</span>
+<span class="n">ngc_data_resized</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">re_size</span><span class="p">(</span><span class="n">ngc_cut</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span>  <span class="c1"># re-size image to lower resolution</span>
+
+<span class="c1"># now we come to the Shapelet decomposition</span>
+<span class="c1"># we turn the image in a single 1d array</span>
+<span class="n">image_1d</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">image2array</span><span class="p">(</span><span class="n">ngc_data_resized</span><span class="p">)</span>  <span class="c1"># map 2d image in 1d data array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we define the shapelet basis set we want the image to decompose in</span>
+<span class="n">n_max</span> <span class="o">=</span> <span class="mi">150</span>  <span class="c1"># choice of number of shapelet basis functions, 150 is a high resolution number, but takes long</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># shapelet scale parameter (in units of resized pixels)</span>
+
+<span class="c1"># import the ShapeletSet class</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.LightModel.Profiles.shapelets</span> <span class="kn">import</span> <span class="n">ShapeletSet</span>
+<span class="n">shapeletSet</span> <span class="o">=</span> <span class="n">ShapeletSet</span><span class="p">()</span>
+
+<span class="c1"># decompose image and return the shapelet coefficients</span>
+<span class="n">coeff_ngc</span> <span class="o">=</span> <span class="n">shapeletSet</span><span class="o">.</span><span class="n">decomposition</span><span class="p">(</span><span class="n">image_1d</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_max</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">center_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coeff_ngc</span><span class="p">),</span> <span class="s1">&#39;number of coefficients&#39;</span><span class="p">)</span>  <span class="c1"># number of coefficients</span>
+
+<span class="c1"># reconstruct NGC1300 with the shapelet coefficients</span>
+<span class="n">image_reconstructed</span> <span class="o">=</span> <span class="n">shapeletSet</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">coeff_ngc</span><span class="p">,</span> <span class="n">n_max</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">center_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># turn 1d array back into 2d image</span>
+<span class="n">image_reconstructed_2d</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">array2image</span><span class="p">(</span><span class="n">image_reconstructed</span><span class="p">)</span>  <span class="c1"># map 1d data vector in 2d image</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">ngc_square</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;original image&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">ngc_conv</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;convolved image&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">ngc_data_resized</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;resized&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">image_reconstructed_2d</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;reconstructed&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11476 number of coefficients
+</pre></div>
+</div>
+<img alt="../../_images/d98d153232cf4f36669ecce2420f7028f6fc923267842070c1a1a8ce4cdf3918.png" src="../../_images/d98d153232cf4f36669ecce2420f7028f6fc923267842070c1a1a8ce4cdf3918.png" />
+</div>
+</div>
+</section>
+<section id="lens-the-decomposed-image-through-the-lens-model">
+<h2>3. lens the decomposed image through the lens model<a class="headerlink" href="#lens-the-decomposed-image-through-the-lens-model" title="Link to this heading">#</a></h2>
+<p>now we combine the lens model and the galaxy (their shapelet coefficients) in producing a lensed image through backwards ray-tracing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we define a very high resolution grid for the ray-tracing (needs to be checked to be accurate enough!)</span>
+<span class="n">numPix</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># number of pixels (low res of data)</span>
+<span class="n">deltaPix</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># pixel size (low res of data)</span>
+<span class="n">high_res_factor</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># higher resolution factor (per axis)</span>
+<span class="c1"># make the high resolution grid </span>
+<span class="n">theta_x_high_res</span><span class="p">,</span> <span class="n">theta_y_high_res</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">numPix</span><span class="o">=</span><span class="n">numPix</span><span class="o">*</span><span class="n">high_res_factor</span><span class="p">,</span> <span class="n">deltapix</span><span class="o">=</span><span class="n">deltaPix</span><span class="o">/</span><span class="n">high_res_factor</span><span class="p">)</span>
+<span class="c1"># ray-shoot the image plane coordinates (angles) to the source plane (angles)</span>
+<span class="n">beta_x_high_res</span><span class="p">,</span> <span class="n">beta_y_high_res</span> <span class="o">=</span> <span class="n">lensModel</span><span class="o">.</span><span class="n">ray_shooting</span><span class="p">(</span><span class="n">theta_x_high_res</span><span class="p">,</span> <span class="n">theta_y_high_res</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs_lens_list</span><span class="p">)</span>
+
+<span class="c1"># now we do the same as in Section 2, we just evaluate the shapelet functions in the new coordinate system of the source plane</span>
+<span class="c1"># Attention, now the units are not pixels but angles! So we have to define the size and position.</span>
+<span class="c1"># This is simply by chosing a beta (Gaussian width of the Shapelets) and a new center</span>
+
+<span class="n">source_lensed</span> <span class="o">=</span> <span class="n">shapeletSet</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">beta_x_high_res</span><span class="p">,</span> <span class="n">beta_y_high_res</span><span class="p">,</span> <span class="n">coeff_ngc</span><span class="p">,</span> <span class="n">n_max</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">center_x</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">center_y</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># and turn the 1d vector back into a 2d array</span>
+<span class="n">source_lensed</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">array2image</span><span class="p">(</span><span class="n">source_lensed</span><span class="p">)</span>  <span class="c1"># map 1d data vector in 2d image</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">source_lensed</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;lensed source&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5e559278ec5c4b0394b51dd1ff5554b75c2d5f4c26e481c85d9ec39e321805e0.png" src="../../_images/5e559278ec5c4b0394b51dd1ff5554b75c2d5f4c26e481c85d9ec39e321805e0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here we perform the surface brightness computation with an interpolation function instead of the shapelets decomposition</span>
+<span class="c1"># for high orders, this may be computationally more effective</span>
+<span class="n">kwargs_interp</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="n">ngc_data_resized</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span> <span class="s1">&#39;phi_G&#39;</span><span class="p">:</span><span class="mf">0.2</span><span class="p">}</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.LightModel.Profiles.interpolation</span> <span class="kn">import</span> <span class="n">Interpol</span>
+<span class="n">interp_light</span> <span class="o">=</span> <span class="n">Interpol</span><span class="p">()</span>
+
+
+<span class="n">source_lensed_interp</span> <span class="o">=</span> <span class="n">interp_light</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">beta_x_high_res</span><span class="p">,</span> <span class="n">beta_y_high_res</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_interp</span><span class="p">)</span>
+<span class="c1"># and turn the 1d vector back into a 2d array</span>
+<span class="n">source_lensed_interp</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">array2image</span><span class="p">(</span><span class="n">source_lensed_interp</span><span class="p">)</span>  <span class="c1"># map 1d data vector in 2d image</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">source_lensed_interp</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;lensed source&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e9c5cd42d1dbdaab580541013c9145f911776930cb2ae84e4a7af97d41db598e.png" src="../../_images/e9c5cd42d1dbdaab580541013c9145f911776930cb2ae84e4a7af97d41db598e.png" />
+</div>
+</div>
+</section>
+<section id="add-a-lens-light-profile-to-the-image">
+<h2>4. add a lens light profile to the image<a class="headerlink" href="#add-a-lens-light-profile-to-the-image" title="Link to this heading">#</a></h2>
+<p>Now we add a lens light profile. In principle we can just take another image and stack it on top of the lensed source. Instead we choe here parameterised Sersic profiles to represent the lensing host galaxy (might be over-simplified).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the LightModel class</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.LightModel.light_model</span> <span class="kn">import</span> <span class="n">LightModel</span>
+<span class="c1"># define a light mode, in our case the superposition of two elliptical Sersic profiles</span>
+<span class="n">light_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SERSIC_ELLIPSE&#39;</span><span class="p">,</span> <span class="s1">&#39;SERSIC_ELLIPSE&#39;</span><span class="p">]</span>
+<span class="n">kwargs_lens_light</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">2.3</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">]</span>
+<span class="n">lensLightModel</span> <span class="o">=</span> <span class="n">LightModel</span><span class="p">(</span><span class="n">light_model_list</span><span class="o">=</span><span class="n">light_model_list</span><span class="p">)</span>
+<span class="c1"># evaluate the surface brightness of the unlensed coordinates</span>
+<span class="n">flux_lens_light</span> <span class="o">=</span> <span class="n">lensLightModel</span><span class="o">.</span><span class="n">surface_brightness</span><span class="p">(</span><span class="n">theta_x_high_res</span><span class="p">,</span> <span class="n">theta_y_high_res</span><span class="p">,</span> <span class="n">kwargs_lens_light</span><span class="p">)</span>
+<span class="n">flux_lens_light</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">array2image</span><span class="p">(</span><span class="n">flux_lens_light</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">flux_lens_light</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;lens light&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># and now we combine the two components</span>
+<span class="n">image_combined</span> <span class="o">=</span> <span class="n">source_lensed</span> <span class="o">+</span> <span class="n">flux_lens_light</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">image_combined</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;lens light and source combined&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4ab05bb2cc924ab944cc251e7d8f0553364c5261368c0940e64af14d4e4712b6.png" src="../../_images/4ab05bb2cc924ab944cc251e7d8f0553364c5261368c0940e64af14d4e4712b6.png" />
+<img alt="../../_images/0dca7d4e6477d7caa42f475eacb86a54ed6a5be06a4a8c64c592159b0af46837.png" src="../../_images/0dca7d4e6477d7caa42f475eacb86a54ed6a5be06a4a8c64c592159b0af46837.png" />
+</div>
+</div>
+</section>
+<section id="turn-the-simulation-into-realistic-imaging-data">
+<h2>5. turn the simulation into (realistic) imaging data<a class="headerlink" href="#turn-the-simulation-into-realistic-imaging-data" title="Link to this heading">#</a></h2>
+<p>The following steps need to be done to turn the simulated lens into imaging data (or even more things to be considered):</p>
+<ul class="simple">
+<li><p>The convolution through a PSF</p></li>
+<li><p>estimate the flux corresponding to each (finite) pixel</p></li>
+<li><p>simulate the Poisson noise contribution from the sources (count statistic)</p></li>
+<li><p>simulate other noise sources, such as sky brightness, readout noise, etc</p></li>
+<li><p>simulate data reduction pipeline (e.g. drizzling etc, not part of this notebook)</p></li>
+</ul>
+<section id="psf-convolution">
+<h3>5.1 PSF convolution<a class="headerlink" href="#psf-convolution" title="Link to this heading">#</a></h3>
+<p>First we need a PSF kernel of the same resolution as our ray-tracing grid to do so, we import a TinyTim HST PSF of the original pixel size and sub-sample it with an iterative procedure (a bit black magic and not guaranteed to give the true underlinig higher resolution PSF).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import TinyTim PSF file</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">dirpath</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">module_path</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">dirpath</span><span class="p">)</span>
+<span class="n">psf_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span> <span class="s1">&#39;Data/PSF_TinyTim/psf_example.fits&#39;</span><span class="p">)</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">pyfits</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">psf_filename</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kernel</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># subsample PSF to the high_res_factor scaling</span>
+<span class="kn">import</span> <span class="nn">lenstronomy.Util.kernel_util</span> <span class="k">as</span> <span class="nn">kernel_util</span>
+<span class="n">kernel_subsampled</span> <span class="o">=</span> <span class="n">kernel_util</span><span class="o">.</span><span class="n">subgrid_kernel</span><span class="p">(</span><span class="n">kernel</span><span class="p">,</span> <span class="n">high_res_factor</span><span class="p">,</span> <span class="n">odd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kernel_subsampled</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># we cut the PSF a tiny bit on the edges</span>
+<span class="n">kernel_subsampled</span> <span class="o">=</span> <span class="n">kernel_util</span><span class="o">.</span><span class="n">cut_psf</span><span class="p">(</span><span class="n">psf_data</span><span class="o">=</span><span class="n">kernel_subsampled</span><span class="p">,</span> <span class="n">psf_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">kernel_subsampled</span><span class="p">)</span><span class="o">-</span><span class="mi">30</span><span class="o">*</span><span class="n">high_res_factor</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">kernel_subsampled</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># and now we perform the convolution with the scipy built in routine fftconvolve</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
+<span class="n">image_convolved</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">fftconvolve</span><span class="p">(</span><span class="n">image_combined</span><span class="p">,</span> <span class="n">kernel_subsampled</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">image_convolved</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;convolved image&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sibirrer/Library/Python/3.6/lib/python/site-packages/ipykernel_launcher.py:8: RuntimeWarning: divide by zero encountered in log10
+  
+</pre></div>
+</div>
+<img alt="../../_images/14a2f1c1ffffca81f3febf32ff414be0a7183da08c3377365722848e435a0515.png" src="../../_images/14a2f1c1ffffca81f3febf32ff414be0a7183da08c3377365722848e435a0515.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sibirrer/Library/Python/3.6/lib/python/site-packages/ipykernel_launcher.py:14: RuntimeWarning: divide by zero encountered in log10
+  
+/Users/sibirrer/Library/Python/3.6/lib/python/site-packages/ipykernel_launcher.py:14: RuntimeWarning: invalid value encountered in log10
+  
+</pre></div>
+</div>
+<img alt="../../_images/1c511defc1e54ccdd0956fd0db4d500850a98d388617d9b84ee977f2968222e4.png" src="../../_images/1c511defc1e54ccdd0956fd0db4d500850a98d388617d9b84ee977f2968222e4.png" />
+<img alt="../../_images/c338f04b8cd889a4138d7772072a76625e04964f16aa2e8f3f95c2bb693b987a.png" src="../../_images/c338f04b8cd889a4138d7772072a76625e04964f16aa2e8f3f95c2bb693b987a.png" />
+<img alt="../../_images/758aa29403181d134fcfb3eabbad18c8fbeb27bddad35270a0504e6555225576.png" src="../../_images/758aa29403181d134fcfb3eabbad18c8fbeb27bddad35270a0504e6555225576.png" />
+</div>
+</div>
+</section>
+<section id="down-sample-the-resolution-ot-the-pixel-size">
+<h3>5.2 down-sample the resolution ot the pixel size<a class="headerlink" href="#down-sample-the-resolution-ot-the-pixel-size" title="Link to this heading">#</a></h3>
+<p>Mathematicallly, you have to perform the integral of the convolved surface brightness over the size of each pixel. Computationally, we simply average over all those subsampled pixels that are contained within one pixel (only works when the subsampling grid was delibrately designed to do so).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_conv_resized</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">re_size</span><span class="p">(</span><span class="n">image_convolved</span><span class="p">,</span> <span class="n">high_res_factor</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">image_conv_resized</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;resized image to the pixel grid&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fb73ace9c2b5ecd23a3509d3ecd4b9c2bdf2f48169f4f7959e010bbe4d849132.png" src="../../_images/fb73ace9c2b5ecd23a3509d3ecd4b9c2bdf2f48169f4f7959e010bbe4d849132.png" />
+</div>
+</div>
+</section>
+<section id="add-poisson-noise-contribution-from-the-sources">
+<h3>5.3 add Poisson noise contribution from the sources<a class="headerlink" href="#add-poisson-noise-contribution-from-the-sources" title="Link to this heading">#</a></h3>
+<p>Here we role the dice based on the expected Poisson noise originated from the finite count statistic of the photons arriving on the detector from the sources simulated. A few notes to this:</p>
+<ul class="simple">
+<li><p>be aware of the pixel units (electrons != IID photons) and effective exposure time per pixel</p></li>
+<li><p>in the example below, we approximate the Poisson distribution with a Gaussian, this will fail for very low number counts where a photon-by-photon rendering must be undertaken (before the convolution kernel being applied).</p></li>
+<li><p>in the particular example here, the units are the total number of photons collected. If you deal with electrons, you need to know the CCD gain to estimate the IID component.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exposure_time</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># the units are photons and therefore the exposure time is unity</span>
+<span class="n">poisson</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">add_poisson</span><span class="p">(</span><span class="n">image_conv_resized</span><span class="p">,</span> <span class="n">exp_time</span><span class="o">=</span><span class="n">exposure_time</span><span class="p">)</span>
+
+<span class="c1"># and we add here another Gaussian component uniform over the entire image (just because it&#39;s easy)</span>
+<span class="n">background_rms</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># background rms</span>
+<span class="n">bkg</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">add_background</span><span class="p">(</span><span class="n">image_conv_resized</span><span class="p">,</span> <span class="n">sigma_bkd</span><span class="o">=</span><span class="n">background_rms</span><span class="p">)</span>
+
+<span class="c1"># and we add them all together</span>
+<span class="n">image_noisy</span> <span class="o">=</span> <span class="n">image_conv_resized</span> <span class="o">+</span> <span class="n">poisson</span> <span class="o">+</span> <span class="n">bkg</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">image_noisy</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;noise added to the simulation&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a29902e5a880bc3330d68a135bcb7dfe3e1387053a58936e4e09b443b7f6f892.png" src="../../_images/a29902e5a880bc3330d68a135bcb7dfe3e1387053a58936e4e09b443b7f6f892.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="find-the-clumps">
+<h2>Find the clumps!<a class="headerlink" href="#find-the-clumps" title="Link to this heading">#</a></h2>
+<p>Well, that’s the challenge I guess :-)
+If you can’t see the clumps by eye, I’ll help you with this example.
+Here they are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lenstronomy.Data.coord_transforms</span> <span class="kn">import</span> <span class="n">Coordinates</span>
+<span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">ra_at_xy_0</span><span class="p">,</span> <span class="n">dec_at_xy_0</span><span class="p">,</span> <span class="n">x_at_radec_0</span><span class="p">,</span> <span class="n">y_at_radec_0</span><span class="p">,</span> <span class="n">Mpix2coord</span><span class="p">,</span> <span class="n">Mcoord2pix</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">make_grid_with_coordtransform</span><span class="p">(</span><span class="n">numPix</span><span class="o">=</span><span class="n">numPix</span><span class="p">,</span> <span class="n">deltapix</span><span class="o">=</span><span class="n">deltaPix</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="n">Coordinates</span><span class="p">(</span><span class="n">ra_at_xy_0</span><span class="o">=</span><span class="n">ra_at_xy_0</span><span class="p">,</span> <span class="n">dec_at_xy_0</span><span class="o">=</span><span class="n">dec_at_xy_0</span><span class="p">,</span> <span class="n">transform_pix2angle</span><span class="o">=</span><span class="n">Mpix2coord</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">image_noisy</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;here are the clumps!&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lens_model_list</span><span class="p">)):</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs_lens_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span> <span class="o">=</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">map_coord2pix</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;center_x&#39;</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;center_y&#39;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d039a6b2038a374958ab6377f3dc4b1c2423b4dbadba76227d0931e4efdcf285.png" src="../../_images/d039a6b2038a374958ab6377f3dc4b1c2423b4dbadba76227d0931e4efdcf285.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Notebooks\DMSubstructure"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="substructure_challenge_simple_example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Substructure challenge - a simple example</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../TimeDelayCosmography/time_delay_cosmography_simulations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Time delay-cosmography simulations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-a-lens-model">1. Define a lens model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-vs-physical-units">Optical vs physical units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decompose-a-nearby-galaxy-in-high-order-shapelet-coefficients">2. decompose a nearby galaxy in high order shapelet coefficients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lens-the-decomposed-image-through-the-lens-model">3. lens the decomposed image through the lens model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-lens-light-profile-to-the-image">4. add a lens light profile to the image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turn-the-simulation-into-realistic-imaging-data">5. turn the simulation into (realistic) imaging data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#psf-convolution">5.1 PSF convolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#down-sample-the-resolution-ot-the-pixel-size">5.2 down-sample the resolution ot the pixel size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-poisson-noise-contribution-from-the-sources">5.3 add Poisson noise contribution from the sources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-clumps">Find the clumps!</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

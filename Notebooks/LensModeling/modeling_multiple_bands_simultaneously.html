@@ -1,0 +1,1152 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Multi-band fitting &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Notebooks/LensModeling/modeling_multiple_bands_simultaneously';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Shapelet source reconstruction" href="source_reconstruction_with_shapelets.html" />
+    <link rel="prev" title="Quad modelling notebook" href="modeling_a_quadruply_imaged_quasar.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../starting_guide.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../starting_guide.html">
+                    lenstronomy starting guide
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/starting_guide.html"><em>lenstronomy</em> starting guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/units_coordinates_parameters_definitions.html">Units, coordiante system and parameter definitions in lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/fits_handling_and_extracting_needed_information_from_the_data.html">FITS handling and extracting needed information from the data prior to modeling</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lens Modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="modeling_a_simple_Einstein_ring.html">Simple ring parameter constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling_a_doubly_imaged_quasar.html">Double modelling notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling_a_quadruply_imaged_quasar.html">Quad modelling notebook</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Multi-band fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source_reconstruction_with_shapelets.html">Shapelet source reconstruction</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="modelling_of_catalogue_data.html">Modelling of catalogue data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cosmic_shear_with_Einstein_ring_simulations.html">Cosmic shear with Einstein ring simulations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Line-of-Sight Effects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LineOfSightEffects/line-of-sight_effects_tutorial.html">Line-of-sight effects in <code class="docutils literal notranslate"><span class="pre">lenstronomy</span></code></a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/solving_lens_equation_and_computing_flux_ratios.html">lenstronomy lens equation solver and flux ratios computation example notebook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Numerics/lenstronomy_numerics.html">lenstronomy numerics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Simulations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulation_api.html">SimulationAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/skypy_meets_lenstronomy.html">Skypy meets lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulations/simulating_different_telescopes.html">Simulating different telescopes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Galaxy Light Fitting</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/galfitting_with_lenstronomy.html">“Galfitting” with lenstronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Galaxies/quasar_host_galaxy_decomposition.html">Quasar-host galaxy decomposition</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dark Matter Substructure</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_simple_example.html">Substructure challenge - a simple example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../DMSubstructure/substructure_challenge_mock_production.html">Substructure Challenge - Mock production notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time-Delay Cosmography</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_simulations.html">Time delay-cosmography simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/time_delay_cosmography_with_uncertain_psf.html">Time delay-cosmography with uncertain PSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/sampling_of_catalogue_data_with_external_information.html">Sampling of catalogue data with external information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmology_sampling_of_cosmographic_posteriors.html">Cosmology sampling of cosmographic posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TimeDelayCosmography/cosmographic_uncertainty_estimation_and_forecasting_with_kinematics.html">Cosmographic uncertainty estimation and forecasting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clusters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Clusters/clusters.html">Clusters</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FNotebooks/LensModeling/modeling_multiple_bands_simultaneously.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Notebooks/LensModeling/modeling_multiple_bands_simultaneously.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Multi-band fitting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-band-basics">Multi-band basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-recommendations">General recommendations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-choices">simulation choices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-images-with-noise">Simulate images with noise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduce-systematic-misalignment-between-the-two-coordinate-grids">introduce systematic misalignment between the two coordinate grids</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fitting">Model fitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-mcmc-chain">analyse MCMC chain</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="multi-band-fitting">
+<h1>Multi-band fitting<a class="headerlink" href="#multi-band-fitting" title="Link to this heading">#</a></h1>
+<p>This notebook provides the basics for multi-band fitting with lenstronomy. The example chosen is from the ‘simple Einstein ring’ example. The multi-band aspects discribed in this notebook can also be used for any other usecase of lenstronomy.</p>
+<section id="multi-band-basics">
+<h2>Multi-band basics<a class="headerlink" href="#multi-band-basics" title="Link to this heading">#</a></h2>
+<p>Conceptually, multiple exposures or filters effectively is an extension of the data vector. Each individual band comes with it’s own noise properties, PSF, coordination system and pixel scale. In lenstronomy we effectively append an arbitrary length of bands in the multi_band_list argument of the fitting sequence. That’s it!</p>
+<p>The more subtle part comes with the modeling assumptions to be made. There are two main options to distinguis: multi-linear and joint-linear.</p>
+<p>multi-linear: Though the model components (or a subset) are shared with the different bands, the amplitude of the linear surface brightness components are not shared and the linear inversion is done band-by-band independently. If you have different wavelength observations, this allows for the flexibility of different colors (ratios of fluxes between different bands) and surface brightness morphology.</p>
+<p>You have also the option with this mode/class to use different non-linear light profiles for different bands. The class supports keyword arguments ‘index_lens_model_list’, ‘index_source_light_model_list’,
+‘index_lens_light_model_list’, ‘index_point_source_model_list’, ‘index_optical_depth_model_list’ in kwargs_model
+These arguments should be lists of length the number of imaging bands available and each entry in the list is a list of integers specifying the model components being evaluated for the specific band.</p>
+<p>E.g. there are two bands and you want to different light profiles being modeled.
+- you define two different light profiles lens_light_model_list = [‘SERSIC’, ‘SERSIC’]
+- set index_lens_light_model_list = [[0], [1]]
+- (optional) for now all the parameters between the two light profiles are independent in the model. You have the possibility to join a subset of model parameters (e.g. joint centroid). See the Param() class for documentation.</p>
+<p>joint-linear: Only one linear inversion is performed demanding that all amplitude coefficients are shared. This modeling demands an identical intrinsic model (modulo observational conditions) for all exposures. This can be a good approximation for a time-static object with multiple exposures of one single wavelength band.</p>
+<p>You can also use this mode to model different patches within one model simultaneously (multiple smaller cutouts of the same image where relevant for the model, to avoid a too large data vector). This can be helpful in the cluster regime. You have also the option in this mode to change the lens model (only do so when you know what you are doing) for the individual cutous to infer relative lensing operators.</p>
+</section>
+<section id="general-recommendations">
+<h2>General recommendations<a class="headerlink" href="#general-recommendations" title="Link to this heading">#</a></h2>
+<p>Here a few general recommenation that may help in the modeling of multi-band data.</p>
+<ul class="simple">
+<li><p>Start simple: It is relatively easy to become overwhelmed with complexity, handling of parameters, convergence and computational cost when adding multiple bands. Lenstronomy allows (too) conveniently to add multiple data and extend the modeling features. So start simple and explore the need for adding modeling complexity as you progress.</p></li>
+<li><p>Start only with one band (preferentially the most informative one): Having a model of one band can help in the decision and usage of subsequent data. This also helps to start simple. The fitting sequence allows you to make one instance for all bands and then first only chose a subset of bands to be modeled. This may also help in the convergence of you model.</p></li>
+<li><p>Be aware of astrometric misalignment: Even minor misalignment in the relative coordinate system between two or more bands may result in significant residual biases. It is important to have the images aligned to very high precision. The lenstronomy fitting sequence has an option ‘align_images()’ which allows, for a given model (say fit with one band only), to fit for potential alignment offset between the images and then use the updated coordinate system for further modeling.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import of standard python libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">corner</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># make sure lenstronomy is installed, otherwise install the latest pip version</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">lenstronomy</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>lenstronomy
+
+<span class="c1"># import main simulation class of lenstronomy</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Util</span> <span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Data.imaging_data</span> <span class="kn">import</span> <span class="n">ImageData</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Data.psf</span> <span class="kn">import</span> <span class="n">PSF</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulation-choices">
+<h2>simulation choices<a class="headerlink" href="#simulation-choices" title="Link to this heading">#</a></h2>
+<p>Here we chose two different imaging bands with different observational and noise properties. We also perform an arbitrary misalignment in the coordinate grid between the two imaging bands as perfect alignment is hard to achieve and to demonstrate the alignment feature in lenstronomy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==========================</span>
+<span class="c1"># data specifics for image 1</span>
+<span class="c1"># ==========================</span>
+<span class="n">background_rms1</span> <span class="o">=</span> <span class="mf">.005</span>  <span class="c1">#  background noise per pixel</span>
+<span class="n">exp_time1</span> <span class="o">=</span> <span class="mf">500.</span>  <span class="c1">#  exposure time (arbitrary units, flux per pixel is in units #photons/exp_time unit)</span>
+<span class="n">numPix1</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1">#  cutout pixel size</span>
+<span class="n">deltaPix1</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1">#  pixel size in arcsec (area per pixel = deltaPix**2)</span>
+<span class="n">fwhm1</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># full width half max of PSF</span>
+<span class="n">psf_type1</span> <span class="o">=</span> <span class="s1">&#39;GAUSSIAN&#39;</span>  <span class="c1"># &#39;GAUSSIAN&#39;, &#39;PIXEL&#39;, &#39;NONE&#39;</span>
+
+
+<span class="c1"># generate the coordinate grid and image properties (we only read out the relevant lines we need)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ra_at_xy_0</span><span class="p">,</span> <span class="n">dec_at_xy_0</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">Mpix2coord</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">make_grid_with_coordtransform</span><span class="p">(</span><span class="n">numPix</span><span class="o">=</span><span class="n">numPix1</span><span class="p">,</span> <span class="n">deltapix</span><span class="o">=</span><span class="n">deltaPix1</span><span class="p">,</span> <span class="n">center_ra</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_dec</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">subgrid_res</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">kwargs_data1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;background_rms&#39;</span><span class="p">:</span> <span class="n">background_rms1</span><span class="p">,</span>  <span class="c1"># rms of background noise</span>
+               <span class="s1">&#39;exposure_time&#39;</span><span class="p">:</span> <span class="n">exp_time1</span><span class="p">,</span>  <span class="c1"># exposure time (or a map per pixel)</span>
+               <span class="s1">&#39;ra_at_xy_0&#39;</span><span class="p">:</span> <span class="n">ra_at_xy_0</span><span class="p">,</span>  <span class="c1"># RA at (0,0) pixel</span>
+               <span class="s1">&#39;dec_at_xy_0&#39;</span><span class="p">:</span> <span class="n">dec_at_xy_0</span><span class="p">,</span>  <span class="c1"># DEC at (0,0) pixel </span>
+               <span class="s1">&#39;transform_pix2angle&#39;</span><span class="p">:</span> <span class="n">Mpix2coord</span><span class="p">,</span>  <span class="c1"># matrix to translate shift in pixel in shift in relative RA/DEC (2x2 matrix). Make sure it&#39;s units are arcseconds or the angular units you want to model.</span>
+               <span class="s1">&#39;image_data&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numPix1</span><span class="p">,</span> <span class="n">numPix1</span><span class="p">))</span>  <span class="c1"># 2d data vector, here initialized with zeros as place holders that get&#39;s overwritten once a simulated image with noise is created.</span>
+              <span class="p">}</span>
+
+<span class="c1"># generate the psf variables</span>
+<span class="n">kwargs_psf1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;psf_type&#39;</span><span class="p">:</span> <span class="s1">&#39;GAUSSIAN&#39;</span><span class="p">,</span> <span class="s1">&#39;fwhm&#39;</span><span class="p">:</span> <span class="n">fwhm1</span><span class="p">,</span> <span class="s1">&#39;pixel_size&#39;</span><span class="p">:</span> <span class="n">deltaPix1</span><span class="p">,</span> <span class="s1">&#39;truncation&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="n">kwargs_numerics1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;supersampling_factor&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;supersampling_convolution&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+
+<span class="c1"># ==========================================================================================</span>
+
+
+<span class="c1"># ==========================</span>
+<span class="c1"># data specifics for image 2</span>
+<span class="c1"># ==========================</span>
+<span class="n">background_rms2</span> <span class="o">=</span> <span class="mf">.01</span>  <span class="c1">#  background noise per pixel</span>
+<span class="n">exp_time2</span> <span class="o">=</span> <span class="mf">200.</span>  <span class="c1">#  exposure time (arbitrary units, flux per pixel is in units #photons/exp_time unit)</span>
+<span class="n">numPix2</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1">#  cutout pixel size</span>
+<span class="n">deltaPix2</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1">#  pixel size in arcsec (area per pixel = deltaPix**2)</span>
+<span class="n">fwhm2</span> <span class="o">=</span> <span class="mf">0.2</span>  <span class="c1"># full width half max of PSF</span>
+<span class="n">psf_type2</span> <span class="o">=</span> <span class="s1">&#39;GAUSSIAN&#39;</span>  <span class="c1"># &#39;GAUSSIAN&#39;, &#39;PIXEL&#39;, &#39;NONE&#39;</span>
+
+
+<span class="c1"># generate the coordinate grid and image properties (we only read out the relevant lines we need)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ra_at_xy_0</span><span class="p">,</span> <span class="n">dec_at_xy_0</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">Mpix2coord</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">make_grid_with_coordtransform</span><span class="p">(</span><span class="n">numPix</span><span class="o">=</span><span class="n">numPix2</span><span class="p">,</span> <span class="n">deltapix</span><span class="o">=</span><span class="n">deltaPix2</span><span class="p">,</span> <span class="n">center_ra</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">center_dec</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">subgrid_res</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+
+<span class="n">kwargs_data2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;background_rms&#39;</span><span class="p">:</span> <span class="n">background_rms2</span><span class="p">,</span>  <span class="c1"># rms of background noise</span>
+               <span class="s1">&#39;exposure_time&#39;</span><span class="p">:</span> <span class="n">exp_time2</span><span class="p">,</span>  <span class="c1"># exposure time (or a map per pixel)</span>
+               <span class="s1">&#39;ra_at_xy_0&#39;</span><span class="p">:</span> <span class="n">ra_at_xy_0</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># RA at (0,0) pixel  HERE WE SET AN OFFSET BETWEEN THE IMAGES - BECAUSE WE CAN!</span>
+               <span class="s1">&#39;dec_at_xy_0&#39;</span><span class="p">:</span> <span class="n">dec_at_xy_0</span><span class="p">,</span>  <span class="c1"># DEC at (0,0) pixel </span>
+               <span class="s1">&#39;transform_pix2angle&#39;</span><span class="p">:</span> <span class="n">Mpix2coord</span><span class="p">,</span>  <span class="c1"># matrix to translate shift in pixel in shift in relative RA/DEC (2x2 matrix). Make sure it&#39;s units are arcseconds or the angular units you want to model.</span>
+               <span class="s1">&#39;image_data&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numPix2</span><span class="p">,</span> <span class="n">numPix2</span><span class="p">))</span>  <span class="c1"># 2d data vector, here initialized with zeros as place holders that get&#39;s overwritten once a simulated image with noise is created.</span>
+              <span class="p">}</span>
+
+<span class="c1"># generate the psf variables</span>
+<span class="n">kwargs_psf2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;psf_type&#39;</span><span class="p">:</span> <span class="s1">&#39;GAUSSIAN&#39;</span><span class="p">,</span> <span class="s1">&#39;fwhm&#39;</span><span class="p">:</span> <span class="n">fwhm2</span><span class="p">,</span> <span class="s1">&#39;pixel_size&#39;</span><span class="p">:</span> <span class="n">deltaPix2</span><span class="p">,</span> <span class="s1">&#39;truncation&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="c1"># we used larger pixel sizes for image 2 so to get to the same ray tracing resolution (numerics, we need super-sampling)</span>
+<span class="n">kwargs_numerics2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;supersampling_factor&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;supersampling_convolution&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>  
+
+
+<span class="c1"># ==============================================================================================</span>
+
+<span class="c1"># this is the list of data properties (without the actual simulated data yet)</span>
+<span class="n">multi_band_list_sim</span> <span class="o">=</span> <span class="p">[[</span><span class="n">kwargs_data1</span><span class="p">,</span> <span class="n">kwargs_psf1</span><span class="p">,</span> <span class="n">kwargs_numerics1</span><span class="p">],</span> <span class="p">[</span><span class="n">kwargs_data2</span><span class="p">,</span> <span class="n">kwargs_psf2</span><span class="p">,</span> <span class="n">kwargs_numerics2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lensing quantities (applicable for both bands)</span>
+<span class="n">lens_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SIE&#39;</span><span class="p">,</span> <span class="s1">&#39;SHEAR&#39;</span><span class="p">]</span>
+<span class="n">kwargs_sie</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">.66</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">.07</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.03</span><span class="p">}</span>  <span class="c1"># parameters of the deflector lens model</span>
+<span class="n">kwargs_shear</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gamma1&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;gamma2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">}</span>  <span class="c1"># shear values to the source plane</span>
+<span class="n">kwargs_lens</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_sie</span><span class="p">,</span> <span class="n">kwargs_shear</span><span class="p">]</span>
+
+
+<span class="c1"># Sersic parameters in the initial simulation for the source. Here we use two different Sersic profiles for the two bands to describe a morphology difference</span>
+<span class="n">kwargs_sersic1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">kwargs_sersic2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="n">source_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SERSIC_ELLIPSE&#39;</span><span class="p">,</span> <span class="s1">&#39;SERSIC_ELLIPSE&#39;</span><span class="p">]</span>
+<span class="n">kwargs_source</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_sersic1</span><span class="p">,</span> <span class="n">kwargs_sersic2</span><span class="p">]</span>
+<span class="n">index_source_light_model_list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>  <span class="c1"># set the first model to data1 and second model to data2</span>
+
+<span class="c1"># for this example we chose the identical model for the lens light profile for simplicity.</span>
+<span class="n">kwargs_sersic_lens</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;amp&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="n">lens_light_model_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SERSIC_ELLIPSE&#39;</span><span class="p">]</span>
+<span class="n">kwargs_lens_light</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_sersic_lens</span><span class="p">]</span>
+
+
+<span class="n">kwargs_model</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model_list&#39;</span><span class="p">:</span> <span class="n">lens_model_list</span><span class="p">,</span> 
+                <span class="s1">&#39;source_light_model_list&#39;</span><span class="p">:</span> <span class="n">source_model_list</span><span class="p">,</span> 
+                <span class="s1">&#39;lens_light_model_list&#39;</span><span class="p">:</span> <span class="n">lens_light_model_list</span><span class="p">,</span>
+                <span class="s1">&#39;index_source_light_model_list&#39;</span><span class="p">:</span> <span class="n">index_source_light_model_list</span>
+               <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="simulate-images-with-noise">
+<h3>Simulate images with noise<a class="headerlink" href="#simulate-images-with-noise" title="Link to this heading">#</a></h3>
+<p>Here we simulate the two bands, using the SingleBandMultiModel() class, which allows to select a subset of the full models to be used for individual bands</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lenstronomy.ImSim.MultiBand.single_band_multi_model</span> <span class="kn">import</span> <span class="n">SingleBandMultiModel</span>
+
+<span class="c1"># making two instances of ImageModel that allow the evaluation of a subset of the model components and indicating which band to be evaluated.</span>
+<span class="n">sim_band1</span> <span class="o">=</span> <span class="n">SingleBandMultiModel</span><span class="p">(</span><span class="n">multi_band_list</span><span class="o">=</span><span class="n">multi_band_list_sim</span><span class="p">,</span> <span class="n">kwargs_model</span><span class="o">=</span><span class="n">kwargs_model</span><span class="p">,</span> <span class="n">likelihood_mask_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">band_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sim_band2</span> <span class="o">=</span> <span class="n">SingleBandMultiModel</span><span class="p">(</span><span class="n">multi_band_list</span><span class="o">=</span><span class="n">multi_band_list_sim</span><span class="p">,</span> <span class="n">kwargs_model</span><span class="o">=</span><span class="n">kwargs_model</span><span class="p">,</span> <span class="n">likelihood_mask_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">band_index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c1"># generate image</span>
+<span class="n">image_model1</span> <span class="o">=</span> <span class="n">sim_band1</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">kwargs_lens</span><span class="p">,</span> <span class="n">kwargs_source</span><span class="p">,</span> <span class="n">kwargs_lens_light</span><span class="o">=</span><span class="n">kwargs_lens_light</span><span class="p">,</span> <span class="n">kwargs_ps</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">image_model2</span> <span class="o">=</span> <span class="n">sim_band2</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">kwargs_lens</span><span class="p">,</span> <span class="n">kwargs_source</span><span class="p">,</span> <span class="n">kwargs_lens_light</span><span class="o">=</span><span class="n">kwargs_lens_light</span><span class="p">,</span> <span class="n">kwargs_ps</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">lenstronomy.Util.image_util</span> <span class="k">as</span> <span class="nn">image_util</span>
+<span class="n">poisson1</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">add_poisson</span><span class="p">(</span><span class="n">image_model1</span><span class="p">,</span> <span class="n">exp_time</span><span class="o">=</span><span class="n">exp_time1</span><span class="p">)</span>
+<span class="n">bkg1</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">add_background</span><span class="p">(</span><span class="n">image_model1</span><span class="p">,</span> <span class="n">sigma_bkd</span><span class="o">=</span><span class="n">background_rms1</span><span class="p">)</span>
+<span class="n">image_real1</span> <span class="o">=</span> <span class="n">image_model1</span> <span class="o">+</span> <span class="n">poisson1</span> <span class="o">+</span> <span class="n">bkg1</span>
+<span class="n">kwargs_data1</span><span class="p">[</span><span class="s1">&#39;image_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_real1</span>
+
+<span class="n">poisson2</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">add_poisson</span><span class="p">(</span><span class="n">image_model2</span><span class="p">,</span> <span class="n">exp_time</span><span class="o">=</span><span class="n">exp_time2</span><span class="p">)</span>
+<span class="n">bkg2</span> <span class="o">=</span> <span class="n">image_util</span><span class="o">.</span><span class="n">add_background</span><span class="p">(</span><span class="n">image_model2</span><span class="p">,</span> <span class="n">sigma_bkd</span><span class="o">=</span><span class="n">background_rms2</span><span class="p">)</span>
+<span class="n">image_real2</span> <span class="o">=</span> <span class="n">image_model2</span> <span class="o">+</span> <span class="n">poisson2</span> <span class="o">+</span> <span class="n">bkg2</span>
+<span class="n">kwargs_data2</span><span class="p">[</span><span class="s1">&#39;image_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_real2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display the initial simulated image</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_under</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">v_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">v_max</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># sequence of weak lensing</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">image_real1</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">v_min</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">v_max</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">image_real2</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">v_min</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">v_max</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/yp/rr1r4kgd2f3fpggf8vqnkqym0000gn/T/ipykernel_81169/2266627457.py:14: RuntimeWarning: invalid value encountered in log10
+  im = ax.matshow(np.log10(image_real1), origin=&#39;lower&#39;, vmin=v_min, vmax=v_max, cmap=cmap, extent=[0, 1, 0, 1])
+/var/folders/yp/rr1r4kgd2f3fpggf8vqnkqym0000gn/T/ipykernel_81169/2266627457.py:20: RuntimeWarning: invalid value encountered in log10
+  im = ax.matshow(np.log10(image_real2), origin=&#39;lower&#39;, vmin=v_min, vmax=v_max, cmap=cmap, extent=[0, 1, 0, 1])
+</pre></div>
+</div>
+<img alt="../../_images/8ca29301649b127ad1d8ae406ea8da75256580080d2b2d7e16a2b899b47443f5.png" src="../../_images/8ca29301649b127ad1d8ae406ea8da75256580080d2b2d7e16a2b899b47443f5.png" />
+</div>
+</div>
+</section>
+<section id="introduce-systematic-misalignment-between-the-two-coordinate-grids">
+<h3>introduce systematic misalignment between the two coordinate grids<a class="headerlink" href="#introduce-systematic-misalignment-between-the-two-coordinate-grids" title="Link to this heading">#</a></h3>
+<p>The images were simulated relative to the same coordinate grid and all the lens and light model components are expected to be recovered acurately for both images consistently. However, in real life, perfect relative coordinate alignment is very hard to achieve. Here we offset the coordinate grid of the second image systematically. We elaborate in the fitting how we can re-align the astrometry of the two images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs_data2_offset</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">kwargs_data2</span><span class="p">)</span>
+<span class="n">kwargs_data2_offset</span><span class="p">[</span><span class="s1">&#39;ra_at_xy_0&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">0.083</span>
+<span class="n">kwargs_data2_offset</span><span class="p">[</span><span class="s1">&#39;dec_at_xy_0&#39;</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">0.019</span>
+
+
+<span class="n">multi_band_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">kwargs_data1</span><span class="p">,</span> <span class="n">kwargs_psf1</span><span class="p">,</span> <span class="n">kwargs_numerics1</span><span class="p">],</span> <span class="p">[</span><span class="n">kwargs_data2_offset</span><span class="p">,</span> <span class="n">kwargs_psf2</span><span class="p">,</span> <span class="n">kwargs_numerics2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-fitting">
+<h2>Model fitting<a class="headerlink" href="#model-fitting" title="Link to this heading">#</a></h2>
+<p>in the blocks above we simulated a mock lens with noise properties. From these cells, we only require the kwargs_data and kwargs_psf arguments to perform the modeling. If you have real data, you can leave out the image simulation and directly read in the data, PSF and noise properties into the keyword arguement list. Make sure the units are correct. Further information on the settings are available in the ImageData() and PSF() classes in the lenstronomy.Data module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lens models</span>
+<span class="n">fixed_lens</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lens_init</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lens_sigma</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lower_lens</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_upper_lens</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">fixed_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>  <span class="c1"># for this example, we fix the power-law index of the lens model to be isothermal</span>
+<span class="n">kwargs_lens_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span>
+                         <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">})</span>
+<span class="n">kwargs_lens_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">.2</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+                         <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">})</span>
+<span class="n">kwargs_lower_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">})</span>
+<span class="n">kwargs_upper_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;theta_E&#39;</span><span class="p">:</span> <span class="mf">10.</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+<span class="n">fixed_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;ra_0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;dec_0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">kwargs_lens_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;gamma1&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;gamma2&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">})</span>
+<span class="n">kwargs_lens_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;gamma1&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;gamma2&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+<span class="n">kwargs_lower_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;gamma1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;gamma2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">})</span>
+<span class="n">kwargs_upper_lens</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;gamma1&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;gamma2&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">})</span>
+
+<span class="n">lens_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_lens_init</span><span class="p">,</span> <span class="n">kwargs_lens_sigma</span><span class="p">,</span> <span class="n">fixed_lens</span><span class="p">,</span> <span class="n">kwargs_lower_lens</span><span class="p">,</span> <span class="n">kwargs_upper_lens</span><span class="p">]</span>
+
+
+<span class="n">fixed_source</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_source_init</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_source_sigma</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lower_source</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_upper_source</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># we have two source models</span>
+<span class="n">fixed_source</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+<span class="n">kwargs_source_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">kwargs_source_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">})</span>
+<span class="n">kwargs_lower_source</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">})</span>
+<span class="n">kwargs_upper_source</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">5.</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+<span class="n">fixed_source</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+<span class="n">kwargs_source_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">kwargs_source_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">})</span>
+<span class="n">kwargs_lower_source</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">})</span>
+<span class="n">kwargs_upper_source</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">5.</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+<span class="n">source_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_source_init</span><span class="p">,</span> <span class="n">kwargs_source_sigma</span><span class="p">,</span> <span class="n">fixed_source</span><span class="p">,</span> <span class="n">kwargs_lower_source</span><span class="p">,</span> <span class="n">kwargs_upper_source</span><span class="p">]</span>
+
+
+<span class="n">fixed_lens_light</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lens_light_init</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lens_light_sigma</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_lower_lens_light</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kwargs_upper_lens_light</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="n">fixed_lens_light</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+<span class="n">kwargs_lens_light_init</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">kwargs_lens_light_sigma</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+<span class="n">kwargs_lower_lens_light</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">})</span>
+<span class="n">kwargs_upper_lens_light</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;e1&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;R_sersic&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">:</span> <span class="mf">5.</span><span class="p">,</span> <span class="s1">&#39;center_x&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+<span class="n">lens_light_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">kwargs_lens_light_init</span><span class="p">,</span> <span class="n">kwargs_lens_light_sigma</span><span class="p">,</span> <span class="n">fixed_lens_light</span><span class="p">,</span> <span class="n">kwargs_lower_lens_light</span><span class="p">,</span> <span class="n">kwargs_upper_lens_light</span><span class="p">]</span>
+
+<span class="n">kwargs_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lens_model&#39;</span><span class="p">:</span> <span class="n">lens_params</span><span class="p">,</span>
+                <span class="s1">&#39;source_model&#39;</span><span class="p">:</span> <span class="n">source_params</span><span class="p">,</span>
+                <span class="s1">&#39;lens_light_model&#39;</span><span class="p">:</span> <span class="n">lens_light_params</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs_likelihood</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;source_marg&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s1">&#39;bands_compute&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>  <span class="c1"># (optional) you can select a specific sub-set of imaging band to be modeled and update it during different steps of the fitting sequence</span>
+                    <span class="p">}</span>
+
+<span class="n">kwargs_data_joint</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;multi_band_list&#39;</span><span class="p">:</span> <span class="n">multi_band_list</span><span class="p">,</span> 
+                     <span class="s1">&#39;multi_band_type&#39;</span><span class="p">:</span> <span class="s1">&#39;multi-linear&#39;</span>  <span class="c1"># &#39;multi-linear&#39;: every imaging band has independent solutions of the surface brightness, &#39;joint-linear&#39;: there is one joint solution of the linear coefficients demanded across the bands.</span>
+                    <span class="p">}</span>
+
+
+<span class="c1">#    &#39;joint_source_with_source&#39;:list [[i_source, k_source, [&#39;param_name1&#39;, &#39;param_name2&#39;, ...]], [...], ...],</span>
+<span class="c1">#    joint parameter between two source surface brightness models, the second adopts the value of the first</span>
+
+<span class="c1"># here we add (optional) constraints between the light profile of the two different imaging bands. We demand the center ellipticity to be the same.</span>
+<span class="c1"># effectively this leaves the half-light radius and Sersic index free between the colors.</span>
+<span class="n">kwargs_constraints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;joint_source_with_source&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;center_x&#39;</span><span class="p">,</span> <span class="s1">&#39;center_y&#39;</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">]]]}</span>
+
+
+<span class="kn">from</span> <span class="nn">lenstronomy.Workflow.fitting_sequence</span> <span class="kn">import</span> <span class="n">FittingSequence</span>
+<span class="n">fitting_seq</span> <span class="o">=</span> <span class="n">FittingSequence</span><span class="p">(</span><span class="n">kwargs_data_joint</span><span class="p">,</span> <span class="n">kwargs_model</span><span class="p">,</span> <span class="n">kwargs_constraints</span><span class="p">,</span> <span class="n">kwargs_likelihood</span><span class="p">,</span> <span class="n">kwargs_params</span><span class="p">)</span>
+
+<span class="n">fitting_kwargs_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;update_settings&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;kwargs_likelihood&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;bands_compute&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]},</span>  <span class="c1"># only compute first band</span>
+                        <span class="s1">&#39;source_add_fixed&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">]]]</span>  <span class="c1"># fix all parameters that are only used in the second band</span>
+                        <span class="p">}],</span> 
+    <span class="p">[</span><span class="s1">&#39;PSO&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;sigma_scale&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;n_particles&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;n_iterations&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}],</span>  <span class="c1"># run PSO first band</span>
+    <span class="p">[</span><span class="s1">&#39;align_images&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;n_particles&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;n_iterations&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> 
+                      <span class="s1">&#39;align_offset&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;align_rotation&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+                      <span class="s1">&#39;delta_shift&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;delta_rot&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+                      <span class="s1">&#39;compute_bands&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]}],</span>  <span class="c1"># align second image</span>
+    <span class="p">[</span><span class="s1">&#39;update_settings&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;kwargs_likelihood&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;bands_compute&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">]},</span>  <span class="c1"># now we fit both bands jointly</span>
+                        <span class="s1">&#39;source_remove_fixed&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;R_sersic&#39;</span><span class="p">,</span> <span class="s1">&#39;n_sersic&#39;</span><span class="p">,</span> <span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">]]]</span>  <span class="c1"># and release all parameters of the second band to be free</span>
+                        <span class="p">}],</span> 
+    <span class="p">[</span><span class="s1">&#39;PSO&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;sigma_scale&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s1">&#39;n_particles&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;n_iterations&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}],</span>  <span class="c1"># run PSO of both bands</span>
+    <span class="p">[</span><span class="s1">&#39;MCMC&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;n_burn&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;n_run&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;walkerRatio&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;sigma_scale&#39;</span><span class="p">:</span> <span class="mf">.1</span><span class="p">}]</span>  <span class="c1"># run MCMC for all parameters</span>
+        <span class="p">]</span>
+
+<span class="n">chain_list</span> <span class="o">=</span> <span class="n">fitting_seq</span><span class="o">.</span><span class="n">fit_sequence</span><span class="p">(</span><span class="n">fitting_kwargs_list</span><span class="p">)</span>
+<span class="n">kwargs_result</span> <span class="o">=</span> <span class="n">fitting_seq</span><span class="o">.</span><span class="n">best_fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing the PSO ...
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+110
+120
+130
+140
+150
+160
+170
+180
+190
+Converged after 194 iterations!
+Best fit found:  -1885.0022306286153 [0.65913191004222, 0.0596766025574849, -0.022686854527888052, 0.05298246167261508, -0.0015418516339145358, -0.006143740294418489, -0.04525452428803977, 0.10208687283200489, 1.046821837840445, -0.05341631760521268, 0.1020400128935955, 0.10340088050029793, -0.002570980522738632, 0.633054508744141, 2.0681616099085267, -0.1116019361842024, 0.09571640590329542, 0.0499570035269742, -0.002217710507792228]
+-1.0533681087614504 reduced X^2 of best position
+-1885.0022306286153 log likelihood
+3579 effective number of data points
+[{&#39;theta_E&#39;: 0.65913191004222, &#39;e1&#39;: 0.0596766025574849, &#39;e2&#39;: -0.022686854527888052, &#39;center_x&#39;: 0.05298246167261508, &#39;center_y&#39;: -0.0015418516339145358}, {&#39;gamma1&#39;: -0.006143740294418489, &#39;gamma2&#39;: -0.04525452428803977, &#39;ra_0&#39;: 0, &#39;dec_0&#39;: 0}] lens result
+[{&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.10208687283200489, &#39;n_sersic&#39;: 1.046821837840445, &#39;e1&#39;: -0.05341631760521268, &#39;e2&#39;: 0.1020400128935955, &#39;center_x&#39;: 0.10340088050029793, &#39;center_y&#39;: -0.002570980522738632}, {&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.2, &#39;n_sersic&#39;: 2, &#39;e1&#39;: -0.05341631760521268, &#39;e2&#39;: 0.1020400128935955, &#39;center_x&#39;: 0.10340088050029793, &#39;center_y&#39;: -0.002570980522738632}] source result
+[{&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.633054508744141, &#39;n_sersic&#39;: 2.0681616099085267, &#39;e1&#39;: -0.1116019361842024, &#39;e2&#39;: 0.09571640590329542, &#39;center_x&#39;: 0.0499570035269742, &#39;center_y&#39;: -0.002217710507792228}] lens light result
+[] point source result
+{} special param result
+32.13834285736084 time used for  PSO
+===================
+Computing the Alignment fitting for band 1 ... ...
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+Max iteration reached! Stopping.
+Shifts found:  [-0.04041845405190373, -0.035174911974044556, 0.02901008447340293]
+1.0286288261413574 time used for  Alignment fitting for band 1 ...
+Align completed for band 1.
+ra_shift: -0.04041845405190373,  dec_shift: -0.035174911974044556, phi_rot: 0.02901008447340293
+Computing the PSO ...
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+110
+120
+130
+140
+150
+160
+170
+180
+190
+Converged after 195 iterations!
+Best fit found:  -2384.452511318366 [0.6590760313143781, 0.05721711655973011, -0.021966476949969605, 0.052689981175497225, -0.0014756661086692885, -0.0072311464017392815, -0.04502193988719865, 0.10168959671590325, 1.0462743567301995, -0.055256518764085265, 0.09592485907699752, 0.10348731449034372, -0.002955584454797095, 0.1373692326102397, 1.2837658635473053, 0.6342292093365188, 2.0659238228688555, -0.10983169982081296, 0.09837361538498038, 0.050217435244808144, -0.0019187774039711475]
+-1.0656771000305545 reduced X^2 of best position
+-2384.452511318366 log likelihood
+4475 effective number of data points
+[{&#39;theta_E&#39;: 0.6590760313143781, &#39;e1&#39;: 0.05721711655973011, &#39;e2&#39;: -0.021966476949969605, &#39;center_x&#39;: 0.052689981175497225, &#39;center_y&#39;: -0.0014756661086692885}, {&#39;gamma1&#39;: -0.0072311464017392815, &#39;gamma2&#39;: -0.04502193988719865, &#39;ra_0&#39;: 0, &#39;dec_0&#39;: 0}] lens result
+[{&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.10168959671590325, &#39;n_sersic&#39;: 1.0462743567301995, &#39;e1&#39;: -0.055256518764085265, &#39;e2&#39;: 0.09592485907699752, &#39;center_x&#39;: 0.10348731449034372, &#39;center_y&#39;: -0.002955584454797095}, {&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.1373692326102397, &#39;n_sersic&#39;: 1.2837658635473053, &#39;e1&#39;: -0.055256518764085265, &#39;e2&#39;: 0.09592485907699752, &#39;center_x&#39;: 0.10348731449034372, &#39;center_y&#39;: -0.002955584454797095}] source result
+[{&#39;amp&#39;: 1, &#39;R_sersic&#39;: 0.6342292093365188, &#39;n_sersic&#39;: 2.0659238228688555, &#39;e1&#39;: -0.10983169982081296, &#39;e2&#39;: 0.09837361538498038, &#39;center_x&#39;: 0.050217435244808144, &#39;center_y&#39;: -0.0019187774039711475}] lens light result
+[] point source result
+{} special param result
+61.08676505088806 time used for  PSO
+===================
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 200/200 [01:03&lt;00:00,  3.13it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing the MCMC...
+Number of walkers =  210
+Burn-in iterations:  100
+Sampling iterations (in current run): 200
+64.29125809669495 time taken for MCMC sampling
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analyse-mcmc-chain">
+<h2>analyse MCMC chain<a class="headerlink" href="#analyse-mcmc-chain" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lenstronomy.Plots</span> <span class="kn">import</span> <span class="n">chain_plot</span>
+<span class="kn">from</span> <span class="nn">lenstronomy.Plots.model_plot</span> <span class="kn">import</span> <span class="n">ModelPlot</span>
+
+<span class="c1"># we need to extract the updated multi_band_list object since the coordinate shifts were updated in the kwargs_data portions of it</span>
+<span class="n">multi_band_list_out</span> <span class="o">=</span> <span class="n">fitting_seq</span><span class="o">.</span><span class="n">multi_band_list</span>
+
+<span class="n">modelPlot</span> <span class="o">=</span> <span class="n">ModelPlot</span><span class="p">(</span><span class="n">multi_band_list_out</span><span class="p">,</span> <span class="n">kwargs_model</span><span class="p">,</span> <span class="n">kwargs_result</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">cmap_string</span><span class="o">=</span><span class="s2">&quot;gist_heat&quot;</span><span class="p">)</span>
+
+<span class="c1"># here you can choose which band to be plotted</span>
+<span class="n">band_index_plot</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># chose either 0 or 1 for this example</span>
+
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">data_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">model_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">normalized_residual_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">v_min</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="n">v_max</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">source_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">deltaPix_source</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">numPix</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="n">v_min</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="n">v_max</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">convergence_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">v_max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">magnification_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">decomposition_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Lens light&#39;</span><span class="p">,</span> <span class="n">lens_light_add</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unconvolved</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">decomposition_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Lens light convolved&#39;</span><span class="p">,</span> <span class="n">lens_light_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">decomposition_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Source light&#39;</span><span class="p">,</span> <span class="n">source_add</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unconvolved</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">decomposition_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Source light convolved&#39;</span><span class="p">,</span> <span class="n">source_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">decomposition_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;All components&#39;</span><span class="p">,</span> <span class="n">source_add</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lens_light_add</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unconvolved</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">modelPlot</span><span class="o">.</span><span class="n">decomposition_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">band_index</span><span class="o">=</span><span class="n">band_index_plot</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;All components convolved&#39;</span><span class="p">,</span> <span class="n">source_add</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lens_light_add</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">point_source_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kwargs_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sibirrer/Software/lenstronomy/lenstronomy/Plots/model_band_plot.py:101: RuntimeWarning: invalid value encountered in log10
+  im = ax.matshow(np.log10(self._data), origin=&#39;lower&#39;,
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.0604729868761804 reduced X^2 of all evaluated imaging data combined (without degrees of freedom subtracted).
+reduced chi^2 of data  0 =  1.048203026166479
+reduced chi^2 of data  1 =  1.1095528297149864
+</pre></div>
+</div>
+<img alt="../../_images/63ea8038cd03ab3babb38a1d905624bf58decbae494b65107ea0621609351071.png" src="../../_images/63ea8038cd03ab3babb38a1d905624bf58decbae494b65107ea0621609351071.png" />
+<img alt="../../_images/bfe0551e237be788c870e594b5e46c7c0591cea8770d21186eaa6d118349dc22.png" src="../../_images/bfe0551e237be788c870e594b5e46c7c0591cea8770d21186eaa6d118349dc22.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;kwargs_lens&#39;: [{&#39;theta_E&#39;: 0.6585410932187874, &#39;e1&#39;: 0.05620026800728002, &#39;e2&#39;: -0.02252784706495179, &#39;center_x&#39;: 0.053452248167502985, &#39;center_y&#39;: -0.0009913346763022182}, {&#39;gamma1&#39;: -0.008258600775070277, &#39;gamma2&#39;: -0.0465721697125621, &#39;ra_0&#39;: 0, &#39;dec_0&#39;: 0}], &#39;kwargs_source&#39;: [{&#39;amp&#39;: 15.010518851314211, &#39;R_sersic&#39;: 0.10231037402687129, &#39;n_sersic&#39;: 1.0637109180153397, &#39;e1&#39;: -0.054778350242214585, &#39;e2&#39;: 0.09573284710228472, &#39;center_x&#39;: 0.1035306515871204, &#39;center_y&#39;: -0.0016970983047097962}, {&#39;amp&#39;: 3.8890066861229946, &#39;R_sersic&#39;: 0.13785454969527808, &#39;n_sersic&#39;: 1.2624071875574008, &#39;e1&#39;: -0.054778350242214585, &#39;e2&#39;: 0.09573284710228472, &#39;center_x&#39;: 0.1035306515871204, &#39;center_y&#39;: -0.0016970983047097962}], &#39;kwargs_lens_light&#39;: [{&#39;amp&#39;: 13.642765601050773, &#39;R_sersic&#39;: 0.6354660837107726, &#39;n_sersic&#39;: 2.0757693118689193, &#39;e1&#39;: -0.11126857399871944, &#39;e2&#39;: 0.09780260312392657, &#39;center_x&#39;: 0.049800862732065895, &#39;center_y&#39;: -0.0013601792653010402}], &#39;kwargs_ps&#39;: [], &#39;kwargs_special&#39;: {}, &#39;kwargs_extinction&#39;: []}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the results of the MCMC chain</span>
+
+<span class="n">sampler_type</span><span class="p">,</span> <span class="n">samples_mcmc</span><span class="p">,</span> <span class="n">param_mcmc</span><span class="p">,</span> <span class="n">dist_mcmc</span>  <span class="o">=</span> <span class="n">chain_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chain_list</span><span class="p">)):</span>
+    <span class="n">chain_plot</span><span class="o">.</span><span class="n">plot_chain_list</span><span class="p">(</span><span class="n">chain_list</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of non-linear parameters in the MCMC process: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_mcmc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters in order: &quot;</span><span class="p">,</span> <span class="n">param_mcmc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of evaluations in the MCMC process: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">samples_mcmc</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">n_sample</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples_mcmc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span>
+<span class="n">samples_mcmc_cut</span> <span class="o">=</span> <span class="n">samples_mcmc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n_sample</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="p">):]</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">samples_mcmc</span> <span class="o">==</span> <span class="p">[]:</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">num_param</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">samples_mcmc_cut</span><span class="p">)</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">corner</span><span class="o">.</span><span class="n">corner</span><span class="p">(</span><span class="n">samples_mcmc_cut</span><span class="p">[:,:],</span> <span class="n">labels</span><span class="o">=</span><span class="n">param_mcmc</span><span class="p">[:],</span> <span class="n">show_titles</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of non-linear parameters in the MCMC process:  21
+parameters in order:  [&#39;theta_E_lens0&#39;, &#39;e1_lens0&#39;, &#39;e2_lens0&#39;, &#39;center_x_lens0&#39;, &#39;center_y_lens0&#39;, &#39;gamma1_lens1&#39;, &#39;gamma2_lens1&#39;, &#39;R_sersic_source_light0&#39;, &#39;n_sersic_source_light0&#39;, &#39;e1_source_light0&#39;, &#39;e2_source_light0&#39;, &#39;center_x_source_light0&#39;, &#39;center_y_source_light0&#39;, &#39;R_sersic_source_light1&#39;, &#39;n_sersic_source_light1&#39;, &#39;R_sersic_lens_light0&#39;, &#39;n_sersic_lens_light0&#39;, &#39;e1_lens_light0&#39;, &#39;e2_lens_light0&#39;, &#39;center_x_lens_light0&#39;, &#39;center_y_lens_light0&#39;]
+number of evaluations in the MCMC process:  21000
+21000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/yp/rr1r4kgd2f3fpggf8vqnkqym0000gn/T/ipykernel_81169/545214015.py:15: DeprecationWarning: elementwise comparison failed; this will raise an error in the future.
+  if not samples_mcmc == []:
+</pre></div>
+</div>
+<img alt="../../_images/40c76caa2c995c528e47d3d6753ce417c3d9069bc5713f0b5fcbb76c59a1e220.png" src="../../_images/40c76caa2c995c528e47d3d6753ce417c3d9069bc5713f0b5fcbb76c59a1e220.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../../_images/69aea5f0c6ece9ac9f41b702c59dcfc5bb4d0a23567d79e9a79935bd34b662d4.png" src="../../_images/69aea5f0c6ece9ac9f41b702c59dcfc5bb4d0a23567d79e9a79935bd34b662d4.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../../_images/5eacc9ee02812a97a738685cf855a0e5e1a6a2bd3789f0b33bfbf33919fd4a1e.png" src="../../_images/5eacc9ee02812a97a738685cf855a0e5e1a6a2bd3789f0b33bfbf33919fd4a1e.png" />
+<img alt="../../_images/5f5f3b87c030bec6b287245a41f8af9810b203568124e26dab8e89c35ce14ecb.png" src="../../_images/5f5f3b87c030bec6b287245a41f8af9810b203568124e26dab8e89c35ce14ecb.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-lenstronomy-py"
+        },
+        kernelOptions: {
+            name: "conda-env-lenstronomy-py",
+            path: "./Notebooks\LensModeling"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-lenstronomy-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="modeling_a_quadruply_imaged_quasar.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quad modelling notebook</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="source_reconstruction_with_shapelets.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Shapelet source reconstruction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-band-basics">Multi-band basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-recommendations">General recommendations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-choices">simulation choices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-images-with-noise">Simulate images with noise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduce-systematic-misalignment-between-the-two-coordinate-grids">introduce systematic misalignment between the two coordinate grids</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fitting">Model fitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-mcmc-chain">analyse MCMC chain</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
